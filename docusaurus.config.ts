@@ -6,8 +6,8 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'Vali-Flow',
-  tagline: 'Dinosaurs are cool',
-  favicon: 'img/favicon.ico',
+  tagline: `Simplifies data validation in C# .NET.`,
+  favicon: 'img/logo_principal.ico',
 
   // Set the production url of your site here
   url: 'https://your-docusaurus-site.example.com',
@@ -66,7 +66,7 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    image: 'img/logo_princial.png',
     navbar: {
       title: 'Vali-Flow',
       logo: {
@@ -83,7 +83,7 @@ const config: Config = {
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/UBF21',
           label: 'GitHub',
           position: 'right',
         },
@@ -106,11 +106,11 @@ const config: Config = {
           items: [
             {
               label: 'Instagram',
-              href: 'https://discordapp.com/invite/docusaurus',
+              href: 'https://www.instagram.com/felipe_rmm/',
             },
             {
               label: 'Linkedin',
-              href: 'https://x.com/docusaurus',
+              href: 'https://www.linkedin.com/in/felipe-rafael-montenegro-morriberon-a79a341b2/',
             },
           ],
         },
@@ -123,12 +123,12 @@ const config: Config = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/UBF21',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Vali-Flow, Inc. Built with Docusaurus.`,
     },
     // prism: {
     //   theme: prismThemes.github,

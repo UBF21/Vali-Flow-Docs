@@ -55,7 +55,7 @@ function Feature({ title, Svg, description }: FeatureItem) {
 
 export default function HomepageFeatures(): ReactNode {
   return (
-    <section className={styles.features}>
+    <section className={styles.features} style={{marginTop:"60px"}}>
       <div className="container">
         <div className="row">
           {FeatureList.map((props, idx) => (

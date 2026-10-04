@@ -126,7 +126,7 @@ If the method generates only simple comparisons (equal, greater than, less than,
 
 ---
 
-## Step 3: ValiFlow<T> — The Source Generator Handles It
+## Step 3: `ValiFlow<T>` — The Source Generator Handles It
 
 After adding the method to the component class and the interface, the source generator detects the change on the next compilation and automatically generates the delegation method in `ValiFlow.Forwarding.g.cs`:
 
@@ -140,7 +140,7 @@ There is nothing to do manually in `ValiFlow.cs`.
 
 ---
 
-## Step 4: Decide Whether It Goes in ValiFlowQuery<T>
+## Step 4: Decide Whether It Goes in `ValiFlowQuery<T>`
 
 ### If the Method Is EF Core-Safe
 

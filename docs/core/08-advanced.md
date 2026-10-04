@@ -2,8 +2,6 @@
 sidebar_position: 8
 ---
 
-[← Back to README](../../README.md)
-
 # Advanced Features
 
 This page covers the advanced capabilities of `BaseExpression<TBuilder, T>`: building and compiling expressions, validation helpers, message attachment, logical operators, conditional conditions, sub-group grouping, and thread safety.

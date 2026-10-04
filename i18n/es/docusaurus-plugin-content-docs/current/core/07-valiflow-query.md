@@ -2,8 +2,6 @@
 sidebar_position: 7
 ---
 
-[← Volver al README](../../README.md)
-
 # ValiFlowQuery\<T\> — Builder Seguro para EF Core
 
 `ValiFlowQuery<T>` es la variante de `ValiFlow<T>` segura para EF Core. Expone la misma API fluida pero restringe los métodos disponibles a aquellos que se traducen correctamente a SQL a través del visitor de expresiones de EF Core.

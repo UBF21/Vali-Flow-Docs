@@ -2,8 +2,6 @@
 sidebar_position: 5
 ---
 
-[← Volver al README](../../README.md)
-
 # Métodos de Colecciones
 
 `ValiFlow<T>` ofrece un conjunto completo de métodos para validar y filtrar propiedades de tipo colección. Cubre verificaciones de vacuidad, pertenencia a conjuntos, restricciones de conteo, proyecciones con predicados y unicidad.

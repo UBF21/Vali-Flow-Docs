@@ -2,8 +2,6 @@
 sidebar_position: 6
 ---
 
-[← Back to README](../../README.md)
-
 # DateTime Methods
 
 `ValiFlow<T>` supports date and time validation across four .NET types: `DateTime`, `DateTimeOffset`, `DateOnly`, and `TimeOnly`. Methods that rely on runtime constants (e.g., "today", "this week") are in-memory only and cannot be translated by EF Core. Use `ValiFlowQuery<T>` for database-safe alternatives where available.

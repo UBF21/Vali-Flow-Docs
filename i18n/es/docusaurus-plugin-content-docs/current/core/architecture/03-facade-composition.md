@@ -74,7 +74,7 @@ public ValiFlow<T> MinLength(Expression<Func<T, string?>> selector, int min)
 
 ---
 
-## La estructura completa de ValiFlow<T>
+## La estructura completa de `ValiFlow<T>`
 
 ```csharp
 public partial class ValiFlow<T> : BaseExpression<ValiFlow<T>, T>,

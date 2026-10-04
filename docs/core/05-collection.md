@@ -2,8 +2,6 @@
 sidebar_position: 5
 ---
 
-[← Back to README](../../README.md)
-
 # Collection Methods
 
 `ValiFlow<T>` provides a rich set of methods for validating and filtering collection-typed properties. This covers emptiness checks, membership tests, count constraints, predicate projections, and uniqueness checks.

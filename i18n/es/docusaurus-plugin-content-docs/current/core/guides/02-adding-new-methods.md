@@ -126,7 +126,7 @@ Si el método genera solo comparaciones simples (igual, mayor que, menor que, ac
 
 ---
 
-## Paso 3: ValiFlow<T> — el source generator lo resuelve
+## Paso 3: `ValiFlow<T>` — el source generator lo resuelve
 
 Después de agregar el método a la clase del componente y a la interfaz, el source generator detecta el cambio en la próxima compilación y genera automáticamente el método de delegación en `ValiFlow.Forwarding.g.cs`:
 
@@ -140,7 +140,7 @@ No hay nada que hacer manualmente en `ValiFlow.cs`.
 
 ---
 
-## Paso 4: Decidir si va en ValiFlowQuery<T>
+## Paso 4: Decidir si va en `ValiFlowQuery<T>`
 
 ### Si el método es EF Core-safe
 

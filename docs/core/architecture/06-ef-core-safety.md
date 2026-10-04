@@ -33,7 +33,7 @@ Expressions that EF Core cannot translate to SQL are those that:
 
 ---
 
-## ValiFlowQuery<T>: The EF Core-Safe Subset
+## `ValiFlowQuery<T>`: The EF Core-Safe Subset
 
 `ValiFlowQuery<T>` is a variant of `ValiFlow<T>` that exposes **only methods whose expressions EF Core can translate to SQL**. Using `ValiFlowQuery<T>` guarantees at compile time that the resulting expression is translatable.
 

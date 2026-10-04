@@ -2,8 +2,6 @@
 sidebar_position: 6
 ---
 
-[← Volver al README](../../README.md)
-
 # Métodos de Fechas y Horas
 
 `ValiFlow<T>` soporta validación de fechas y horas para cuatro tipos de .NET: `DateTime`, `DateTimeOffset`, `DateOnly` y `TimeOnly`. Los métodos que dependen de constantes en tiempo de ejecución (como "hoy", "esta semana") son de uso solo en memoria y no pueden ser traducidos por EF Core. Para alternativas seguras en base de datos, usa `ValiFlowQuery<T>` donde esté disponible.

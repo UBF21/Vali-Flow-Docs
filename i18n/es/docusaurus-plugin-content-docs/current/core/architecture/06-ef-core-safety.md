@@ -204,3 +204,26 @@ TBuilder IsEmail(Expression<Func<T, string?>> selector);
 ```
 
 Esta convención es parte del **checklist de adición de métodos** documentado en [02-adding-new-methods.md](../guides/02-adding-new-methods.md).
+
+## Caso de estudio: `IsLastDayOfMonth` y el contrato EF-Core-safe
+
+En la v2.0.3 se encontró que `IsLastDayOfMonth()` en `DateTimeExpressionQuery`,
+`DateTimeOffsetExpressionQuery` y `DateOnlyExpressionQuery` violaba el
+contrato EF-Core-safe que describe este documento: construía
+`val.Day == DateTime.DaysInMonth(val.Year, val.Month)`, y
+`DateTime.DaysInMonth` es un helper estático que ningún proveedor
+relacional de EF Core (SQL Server, PostgreSQL/Npgsql, SQLite, MySQL) puede
+traducir a SQL. Cualquier llamada dentro de `IQueryable` lanzaba
+`InvalidOperationException` al compilar la query — una violación real del
+contrato, no teórica, ya que `IsLastDayOfMonth` está expuesto en
+`ValiFlowQuery<T>`, el tipo que este documento promete como EF-Core-safe.
+
+El fix: una fórmula agnóstica de proveedor construida solo con `Year`,
+`Month` y `Day` (enteros simples) más operadores ternarios/aritméticos — el
+único patrón confirmado traducible a SQL `CASE`/`IIF` en cualquier
+proveedor relacional, no solo el que una prueba puntual use. Un primer
+intento con `val.AddDays(1).Month != val.Month` también fue descartado:
+`DateTimeOffset.AddDays` falla su traducción en el proveedor de SQLite.
+
+Ver [Novedades](../09-whats-new.md) para el detalle completo y los tests de
+regresión agregados para detectar este tipo de bug a futuro.

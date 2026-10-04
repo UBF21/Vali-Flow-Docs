@@ -1,0 +1,8 @@
+{
+  "label": "Guías",
+  "position": 101,
+  "link": {
+    "type": "generated-index",
+    "description": "Guías orientadas a tareas para extender y usar Vali-Flow.Core."
+  }
+}

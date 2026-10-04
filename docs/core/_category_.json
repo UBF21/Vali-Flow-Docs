@@ -1,0 +1,8 @@
+{
+  "label": "Core",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Vali-Flow.Core: a dependency-free .NET library for building LINQ predicates fluently, for in-memory validation and EF Core filtering."
+  }
+}

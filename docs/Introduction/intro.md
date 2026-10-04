@@ -29,5 +29,5 @@ Thank you for taking the time to explore Vali-Flow. I truly appreciate your curi
 
 ## Next Steps
 
-Now that you know what **Vali-Flow** is, continue with the [Installation Guide](./installation.md) to start using the library in your project. 🚀
+Now that you know what **Vali-Flow** is, continue with the [Installation Guide](/docs/core/getting-started) to start using the library in your project. 🚀
 

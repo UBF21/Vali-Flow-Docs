@@ -41,7 +41,7 @@ else
 
 Now that you have installed **Vali-Flow** and seen a basic example, explore more advanced features:
 
-- [Basic Usage](./usage/basic-usage.md)
-- [Advanced Usage](./usage/advanced-usage.md)
-- [API Reference](./api-reference/validation-methods.md)
+- [Basic Usage](/docs/core/getting-started)
+- [Advanced Usage](/docs/core/advanced)
+- [API Reference](/docs/category/core)
 

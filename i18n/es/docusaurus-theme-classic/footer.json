@@ -1,38 +1,74 @@
 {
   "link.title.Docs": {
-    "message": "Docs",
+    "message": "Documentacion",
     "description": "The title of the footer links column with title=Docs in the footer"
   },
-  "link.title.Community": {
-    "message": "Community",
-    "description": "The title of the footer links column with title=Community in the footer"
+  "link.title.Packages": {
+    "message": "Paquetes",
+    "description": "The title of the footer links column with title=Packages in the footer"
   },
   "link.title.More": {
-    "message": "More",
+    "message": "Mas",
     "description": "The title of the footer links column with title=More in the footer"
   },
-  "link.item.label.Tutorial": {
-    "message": "Tutorial",
-    "description": "The label of footer link with label=Tutorial linking to /docs/intro"
+  "link.item.label.Introduction": {
+    "message": "Introduccion",
+    "description": "The label of footer link with label=Introduction linking to /docs/introduction"
   },
-  "link.item.label.Instagram": {
-    "message": "Instagram",
-    "description": "The label of footer link with label=Instagram linking to https://www.instagram.com/felipe_rmm/"
+  "link.item.label.Quick Start": {
+    "message": "Inicio rapido",
+    "description": "The label of footer link with label=Quick Start linking to /docs/quick-start"
   },
-  "link.item.label.Linkedin": {
-    "message": "Linkedin",
-    "description": "The label of footer link with label=Linkedin linking to https://www.linkedin.com/in/felipe-rafael-montenegro-morriberon-a79a341b2/"
+  "link.item.label.Core": {
+    "message": "Core",
+    "description": "The label of footer link with label=Core linking to /docs/core/getting-started"
   },
-  "link.item.label.Blog": {
-    "message": "Blog",
-    "description": "The label of footer link with label=Blog linking to /blog"
+  "link.item.label.Evaluators": {
+    "message": "Evaluadores",
+    "description": "The label of footer link with label=Evaluators linking to /docs/adapters/ef-core"
   },
-  "link.item.label.GitHub": {
-    "message": "GitHub",
-    "description": "The label of footer link with label=GitHub linking to https://github.com/UBF21"
+  "link.item.label.Vali-Flow": {
+    "message": "Vali-Flow",
+    "description": "The label of footer link with label=Vali-Flow linking to https://www.nuget.org/packages/Vali-Flow"
+  },
+  "link.item.label.Vali-Flow.Core": {
+    "message": "Vali-Flow.Core",
+    "description": "The label of footer link with label=Vali-Flow.Core linking to https://www.nuget.org/packages/Vali-Flow.Core"
+  },
+  "link.item.label.Vali-Flow.InMemory": {
+    "message": "Vali-Flow.InMemory",
+    "description": "The label of footer link with label=Vali-Flow.InMemory linking to https://www.nuget.org/packages/Vali-Flow.InMemory"
+  },
+  "link.item.label.Vali-Flow.Sql": {
+    "message": "Vali-Flow.Sql",
+    "description": "The label of footer link with label=Vali-Flow.Sql linking to https://www.nuget.org/packages/Vali-Flow.Sql"
+  },
+  "link.item.label.Vali-Flow.NoSql.MongoDB": {
+    "message": "Vali-Flow.NoSql.MongoDB",
+    "description": "The label of footer link with label=Vali-Flow.NoSql.MongoDB linking to https://www.nuget.org/packages/Vali-Flow.NoSql.MongoDB"
+  },
+  "link.item.label.Vali-Flow.NoSql.DynamoDB": {
+    "message": "Vali-Flow.NoSql.DynamoDB",
+    "description": "The label of footer link with label=Vali-Flow.NoSql.DynamoDB linking to https://www.nuget.org/packages/Vali-Flow.NoSql.DynamoDB"
+  },
+  "link.item.label.Vali-Flow.NoSql.Elasticsearch": {
+    "message": "Vali-Flow.NoSql.Elasticsearch",
+    "description": "The label of footer link with label=Vali-Flow.NoSql.Elasticsearch linking to https://www.nuget.org/packages/Vali-Flow.NoSql.Elasticsearch"
+  },
+  "link.item.label.Vali-Flow.NoSql.Redis": {
+    "message": "Vali-Flow.NoSql.Redis",
+    "description": "The label of footer link with label=Vali-Flow.NoSql.Redis linking to https://www.nuget.org/packages/Vali-Flow.NoSql.Redis"
+  },
+  "link.item.label.Vali-Tempo": {
+    "message": "Vali-Tempo",
+    "description": "The label of footer link with label=Vali-Tempo linking to https://github.com/UBF21/Vali-Tempo"
+  },
+  "link.item.label.Vali-Mediator": {
+    "message": "Vali-Mediator",
+    "description": "The label of footer link with label=Vali-Mediator linking to https://github.com/UBF21/Vali-Mediator"
   },
   "copyright": {
-    "message": "Copyright © 2025 Vali-Flow, Inc. Built with Docusaurus.",
+    "message": "Copyright © 2026 The Vali-Flow Contributors. Construido con Docusaurus.",
     "description": "The footer copyright"
   }
 }

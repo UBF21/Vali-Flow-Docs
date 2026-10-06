@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2025-04-11T00:00:00.000Z" agent="draw.io" version="21.0.0">
+  <diagram id="core-structure" name="Core Project Structure">
+    <mxGraphModel dx="1200" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="t1" value="Core Project Structure" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=20;fontStyle=1;fontColor=#4F46E5;" vertex="1" parent="1">
+          <mxGeometry x="120" y="20" width="860" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0b1020;strokeColor=#4F46E5;" vertex="1" parent="1">
+          <mxGeometry x="120" y="60" width="860" height="700" as="geometry" />
+        </mxCell>
+        <mxCell id="item0" value="Builder/ — Public entry points" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#E5E7EB;" vertex="1" parent="1">
+          <mxGeometry x="160" y="80" width="800" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="item1" value="ValiFlow&lt;T&gt; — Main builder (all methods)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#E5E7EB;" vertex="1" parent="1">
+          <mxGeometry x="160" y="118" width="800" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="item2" value="ValiFlowQuery&lt;T&gt; — EF Core-safe subset" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#E5E7EB;" vertex="1" parent="1">
+          <mxGeometry x="160" y="156" width="800" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="item3" value="ValiFlowGlobal — Global filter registry" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#E5E7EB;" vertex="1" parent="1">
+          <mxGeometry x="160" y="194" width="800" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="item4" value="ValiSort&lt;T&gt; — Sorting builder" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#E5E7EB;" vertex="1" parent="1">
+          <mxGeometry x="160" y="232" width="800" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="item5" value="Classes/" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#E5E7EB;" vertex="1" parent="1">
+          <mxGeometry x="160" y="270" width="800" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="item6" value="Base/ — BaseExpression&lt;TBuilder,T&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#E5E7EB;" vertex="1" parent="1">
+          <mxGeometry x="160" y="308" width="800" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="item7" value="General/ — Comparison, BooleanQuery" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#E5E7EB;" vertex="1" parent="1">
+          <mxGeometry x="160" y="346" width="800" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="item8" value="Types/ — Boolean, String, Numeric, Collection, Date" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#E5E7EB;" vertex="1" parent="1">
+          <mxGeometry x="160" y="384" width="800" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="item9" value="Interfaces/" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#E5E7EB;" vertex="1" parent="1">
+          <mxGeometry x="160" y="422" width="800" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="item10" value="General/ — IExpression*, IExpressionBuilder, IExpressionCompiler" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#E5E7EB;" vertex="1" parent="1">
+          <mxGeometry x="160" y="460" width="800" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="item11" value="Types/ — IBooleanExpression&lt;TBuilder,T&gt; etc" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#E5E7EB;" vertex="1" parent="1">
+          <mxGeometry x="160" y="498" width="800" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="item12" value="Models/ — ConditionEntry, ValidationResult, ValidationError, Severity" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#E5E7EB;" vertex="1" parent="1">
+          <mxGeometry x="160" y="536" width="800" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="item13" value="RegularExpressions/ — Precompiled Regex" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#E5E7EB;" vertex="1" parent="1">
+          <mxGeometry x="160" y="574" width="800" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="item14" value="Utils/ — ExpressionHelpers, Validation, Constant" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#E5E7EB;" vertex="1" parent="1">
+          <mxGeometry x="160" y="612" width="800" height="28" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

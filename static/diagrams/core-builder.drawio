@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2025-04-11T00:00:00.000Z" agent="draw.io" version="21.0.0">
+  <diagram id="core-builder" name="Core Builder Composition">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="t1" value="Core Builder — Composition" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=20;fontStyle=1;fontColor=#4F46E5;" vertex="1" parent="1">
+          <mxGeometry x="160" y="40" width="780" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="base" value="BaseExpression&lt;TBuilder,T&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EEF2FF;strokeColor=#4F46E5;fontColor=#111827;" vertex="1" parent="1">
+          <mxGeometry x="390" y="120" width="320" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="bool" value="Boolean" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#10B981;fontColor=#111827;" vertex="1" parent="1">
+          <mxGeometry x="160" y="240" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="string" value="String" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#10B981;fontColor=#111827;" vertex="1" parent="1">
+          <mxGeometry x="320" y="240" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="numeric" value="Numeric" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#10B981;fontColor=#111827;" vertex="1" parent="1">
+          <mxGeometry x="480" y="240" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="date" value="Date/Time" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#10B981;fontColor=#111827;" vertex="1" parent="1">
+          <mxGeometry x="640" y="240" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="a1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#10B981;" edge="1" parent="1" source="base" target="bool">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#10B981;" edge="1" parent="1" source="base" target="string">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#10B981;" edge="1" parent="1" source="base" target="numeric">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#10B981;" edge="1" parent="1" source="base" target="date">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="t2" value="ValiFlow&lt;T&gt; exposes a unified fluent API" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=12;fontColor=#6B7280;" vertex="1" parent="1">
+          <mxGeometry x="240" y="320" width="600" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

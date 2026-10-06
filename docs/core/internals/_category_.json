@@ -1,8 +1,0 @@
-{
-  "label": "Internals",
-  "position": 102,
-  "link": {
-    "type": "generated-index",
-    "description": "Deep internals: condition compilation, thread safety, expression visitors, global state."
-  }
-}

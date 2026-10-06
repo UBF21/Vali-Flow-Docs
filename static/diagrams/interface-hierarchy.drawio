@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2025-04-11T00:00:00.000Z" agent="draw.io" version="21.0.0">
+  <diagram id="interface-hierarchy" name="Interface Hierarchy">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="t1" value="Interface Hierarchy" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=20;fontStyle=1;fontColor=#4F46E5;" vertex="1" parent="1">
+          <mxGeometry x="120" y="20" width="860" height="40" as="geometry" />
+        </mxCell>        <mxCell id="n0" value="IExpressionAnnotator&lt;TBuilder&gt; → WithMessage / WithError / WithSeverity" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EEF2FF;strokeColor=#4F46E5;fontColor=#111827;" vertex="1" parent="1">
+          <mxGeometry x="140" y="90" width="820" height="55" as="geometry" />
+        </mxCell>        <mxCell id="n1" value="IExpressionBuilder&lt;TBuilder,T&gt; → Add / AddSubGroup / And / Or / When / Unless / ValidateNested" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EEF2FF;strokeColor=#4F46E5;fontColor=#111827;" vertex="1" parent="1">
+          <mxGeometry x="140" y="160" width="820" height="55" as="geometry" />
+        </mxCell>        <mxCell id="n2" value="IExpressionEvaluator&lt;T&gt; → IsValid / Validate / Explain" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EEF2FF;strokeColor=#4F46E5;fontColor=#111827;" vertex="1" parent="1">
+          <mxGeometry x="140" y="230" width="820" height="55" as="geometry" />
+        </mxCell>        <mxCell id="n3" value="IExpressionCompiler&lt;T&gt; → Build / BuildNegated / BuildWithGlobal" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EEF2FF;strokeColor=#4F46E5;fontColor=#111827;" vertex="1" parent="1">
+          <mxGeometry x="140" y="300" width="820" height="55" as="geometry" />
+        </mxCell>        <mxCell id="n4" value="IExpressionLifecycle&lt;TBuilder&gt; → Clone / Freeze" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EEF2FF;strokeColor=#4F46E5;fontColor=#111827;" vertex="1" parent="1">
+          <mxGeometry x="140" y="370" width="820" height="55" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

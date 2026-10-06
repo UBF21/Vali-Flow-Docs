@@ -1,8 +1,0 @@
-{
-  "label": "Internals",
-  "position": 102,
-  "link": {
-    "type": "generated-index",
-    "description": "Internals profundos: compilación de condiciones, thread safety, visitantes de expresiones, estado global."
-  }
-}

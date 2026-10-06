@@ -1,0 +1,74 @@
+# — CLAUDEIGNORE —
+# Generado por /flows/onboard
+# Ignorar: dependencias, builds, generados, assets, logs
+# NO ignorar: código fuente escrito a mano
+
+# Package managers
+node_modules/
+.pnp
+.pnp.js
+
+# Lock files
+bun.lock
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Build outputs
+build/
+dist/
+out/
+
+# Docusaurus cache / build
+.docusaurus/
+.cache/
+
+# TypeScript build cache
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Source maps y minificados
+*.map
+*.min.js
+*.min.css
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/settings.json
+*.swp
+*.swo
+
+# Secrets
+.env
+.env.*
+*.pem
+*.key
+*.cert
+secrets/
+
+# Assets binarios (imágenes, fuentes, videos)
+static/img/
+static/diagrams/
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.ico
+*.woff
+*.woff2
+*.ttf
+*.eot
+*.mp4
+*.mp3
+*.svg

@@ -1,0 +1,5 @@
+# ── i18n SPA fallbacks — each locale gets its own index.html ─────
+# so Docusaurus client-side router can handle every deep route.
+
+/es/*   /es/index.html   200
+/*      /index.html      200

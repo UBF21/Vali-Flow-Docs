@@ -1,8 +1,0 @@
-{
-  "label": "Architecture",
-  "position": 100,
-  "link": {
-    "type": "generated-index",
-    "description": "How Vali-Flow.Core is designed internally — read in order to understand the complete design."
-  }
-}

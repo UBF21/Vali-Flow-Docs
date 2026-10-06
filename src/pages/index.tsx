@@ -1,44 +1,984 @@
-import type {ReactNode} from 'react';
+import type { ReactNode } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
-import HomepageFeatures from '@site/src/components/HomepageFeatures';
-import Heading from '@theme/Heading';
+import Head from '@docusaurus/Head';
 
 import styles from './index.module.css';
 
-function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext();
+// ─── Feature data ────────────────────────────────────────────────────────────
+
+interface Feature {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+const FEATURES: Feature[] = [
+  {
+    icon: '🧠',
+    title: 'Vali-Flow.Core',
+    description:
+      'Dependency-free fluent builder for expression trees, validation, and reusable specs.',
+  },
+  {
+    icon: '🧩',
+    title: 'Vali-Flow (EF Core)',
+    description:
+      'Translate specs to LINQ and execute against DbSet<T> with async evaluators.',
+  },
+  {
+    icon: '🧪',
+    title: 'Vali-Flow.InMemory',
+    description:
+      'Fast in-memory evaluator for unit tests, caching, and local rules.',
+  },
+  {
+    icon: '🗄',
+    title: 'Vali-Flow.Sql',
+    description:
+      'Generate SQL WHERE clauses for Dapper and raw ADO.NET scenarios.',
+  },
+  {
+    icon: '🍃',
+    title: 'Vali-Flow.NoSql.MongoDB',
+    description:
+      'Build MongoDB filter definitions directly from specs.',
+  },
+  {
+    icon: '⚡',
+    title: 'Vali-Flow.NoSql.DynamoDB',
+    description:
+      'Translate specs into DynamoDB expressions for fast reads.',
+  },
+  {
+    icon: '🔎',
+    title: 'Vali-Flow.NoSql.Elasticsearch',
+    description:
+      'Create Elasticsearch queries from a single spec.',
+  },
+  {
+    icon: '🧰',
+    title: 'Vali-Flow.NoSql.Redis',
+    description:
+      'Generate Redis/RediSearch filters for fast lookup.',
+  },
+];
+
+const FEATURES_ES: Feature[] = [
+  {
+    icon: '🧠',
+    title: 'Vali-Flow.Core',
+    description:
+      'Builder fluido sin dependencias para expression trees, validacion y specs reutilizables.',
+  },
+  {
+    icon: '🧩',
+    title: 'Vali-Flow (EF Core)',
+    description:
+      'Traduce specs a LINQ y ejecuta sobre DbSet<T> con evaluadores async.',
+  },
+  {
+    icon: '🧪',
+    title: 'Vali-Flow.InMemory',
+    description:
+      'Evaluador in-memory rapido para tests, cache y reglas locales.',
+  },
+  {
+    icon: '🗄',
+    title: 'Vali-Flow.Sql',
+    description:
+      'Genera SQL WHERE para Dapper y ADO.NET.',
+  },
+  {
+    icon: '🍃',
+    title: 'Vali-Flow.NoSql.MongoDB',
+    description:
+      'Construye filtros de MongoDB directamente desde specs.',
+  },
+  {
+    icon: '⚡',
+    title: 'Vali-Flow.NoSql.DynamoDB',
+    description:
+      'Traduce specs a expresiones de DynamoDB.',
+  },
+  {
+    icon: '🔎',
+    title: 'Vali-Flow.NoSql.Elasticsearch',
+    description:
+      'Crea queries de Elasticsearch desde una sola spec.',
+  },
+  {
+    icon: '🧰',
+    title: 'Vali-Flow.NoSql.Redis',
+    description:
+      'Genera filtros para Redis/RediSearch.',
+  },
+];
+
+// ─── Package data ─────────────────────────────────────────────────────────────
+
+interface Package {
+  name: string;
+  description: string;
+  nuget: string;
+}
+
+const PACKAGES: Package[] = [
+  { name: 'Vali-Flow',                     description: 'EF Core evaluator and main package for relational stores.',              nuget: 'https://www.nuget.org/packages/Vali-Flow' },
+  { name: 'Vali-Flow.Core',                description: 'Core builder for expression-tree specs and validation.',                 nuget: 'https://www.nuget.org/packages/Vali-Flow.Core' },
+  { name: 'Vali-Flow.InMemory',            description: 'In-memory evaluator for tests and local filtering.',                     nuget: 'https://www.nuget.org/packages/Vali-Flow.InMemory' },
+  { name: 'Vali-Flow.Sql',                 description: 'SQL evaluator for Dapper and raw ADO.NET workflows.',                     nuget: 'https://www.nuget.org/packages/Vali-Flow.Sql' },
+  { name: 'Vali-Flow.NoSql.MongoDB',       description: 'MongoDB evaluator using filter definitions.',                            nuget: 'https://www.nuget.org/packages/Vali-Flow.NoSql.MongoDB' },
+  { name: 'Vali-Flow.NoSql.DynamoDB',      description: 'DynamoDB evaluator with native expression translation.',                 nuget: 'https://www.nuget.org/packages/Vali-Flow.NoSql.DynamoDB' },
+  { name: 'Vali-Flow.NoSql.Elasticsearch', description: 'Elasticsearch evaluator for query DSL output.',                          nuget: 'https://www.nuget.org/packages/Vali-Flow.NoSql.Elasticsearch' },
+  { name: 'Vali-Flow.NoSql.Redis',         description: 'Redis evaluator with RediSearch query generation.',                      nuget: 'https://www.nuget.org/packages/Vali-Flow.NoSql.Redis' },
+];
+
+const PACKAGES_ES: Package[] = [
+  { name: 'Vali-Flow',                     description: 'Evaluador EF Core y paquete principal para stores relacionales.',          nuget: 'https://www.nuget.org/packages/Vali-Flow' },
+  { name: 'Vali-Flow.Core',                description: 'Builder core para specs con expression trees y validacion.',              nuget: 'https://www.nuget.org/packages/Vali-Flow.Core' },
+  { name: 'Vali-Flow.InMemory',            description: 'Evaluador in-memory para tests y filtrado local.',                        nuget: 'https://www.nuget.org/packages/Vali-Flow.InMemory' },
+  { name: 'Vali-Flow.Sql',                 description: 'Evaluador SQL para Dapper y ADO.NET.',                                    nuget: 'https://www.nuget.org/packages/Vali-Flow.Sql' },
+  { name: 'Vali-Flow.NoSql.MongoDB',       description: 'Evaluador MongoDB con filtros nativos.',                                  nuget: 'https://www.nuget.org/packages/Vali-Flow.NoSql.MongoDB' },
+  { name: 'Vali-Flow.NoSql.DynamoDB',      description: 'Evaluador DynamoDB con traduccion de expresiones.',                        nuget: 'https://www.nuget.org/packages/Vali-Flow.NoSql.DynamoDB' },
+  { name: 'Vali-Flow.NoSql.Elasticsearch', description: 'Evaluador Elasticsearch para query DSL.',                                 nuget: 'https://www.nuget.org/packages/Vali-Flow.NoSql.Elasticsearch' },
+  { name: 'Vali-Flow.NoSql.Redis',         description: 'Evaluador Redis con generacion de queries RediSearch.',                    nuget: 'https://www.nuget.org/packages/Vali-Flow.NoSql.Redis' },
+];
+
+
+// ─── Translations ─────────────────────────────────────────────────────────────
+
+const TRANSLATIONS = {
+  en: {
+    heroBadge: 'Expression trees · translators · analyzers',
+    heroTagline: 'one spec. many backends.',
+    heroSubtitle: 'Build fluent rules once. Execute in EF Core, SQL, MongoDB, DynamoDB, Elasticsearch, Redis or InMemory.',
+    heroModulesLabel: 'Available evaluators',
+    statModules: 'packages',
+    statCountries: 'stores',
+    statSupported: 'core deps',
+    ctaGetStarted: 'Get started →',
+    ctaReadDocs: 'Read the docs',
+    featuresSectionTitle: 'Specs that travel with your data',
+    featuresSectionSubtitle: 'A single fluent spec becomes LINQ, SQL, NoSQL queries or in-memory checks.',
+    pipelineBadge: 'spec pipeline',
+    pipelineTitle: 'Build → translate → execute',
+    pipelineSubtitle: 'Core builds the expression tree. Evaluators translate it to the store you run.',
+    packagesSectionTitle: '8 NuGet packages. Install only what you need.',
+    packagesSectionSubtitle: 'Start with Core, add one evaluator, or mix multiple stores.',
+    useCasesTitle: 'Where Vali-Flow fits best',
+    useCasesSubtitle: 'Compose rules once, keep behavior consistent across services and storage layers.',
+    useCase1Title: 'Repository Filters',
+    useCase1Desc: 'Build specs in the application layer and run them inside EF Core or raw SQL repos.',
+    useCase2Title: 'Cross-Store Consistency',
+    useCase2Desc: 'Use the same spec for MongoDB, DynamoDB, Elasticsearch and Redis search.',
+    useCase3Title: 'Testing & Validation',
+    useCase3Desc: 'Run specs in memory to validate domain rules in fast unit tests.',
+    authorBuiltBy: 'Built by',
+    authorBio: '.NET developer and open-source contributor. Also the author of',
+    seoTitle: 'Vali-Flow — One spec. Many evaluators.',
+    seoDesc: 'Modular .NET ecosystem for building expression-tree specs and executing them across EF Core, SQL, MongoDB, DynamoDB, Elasticsearch, Redis and InMemory.',
+    codeComment: '// Build a spec',
+    copyAriaLabel: 'Copy code',
+    copyToClipboard: 'Copy to clipboard',
+  },
+  es: {
+    heroBadge: 'Expression trees · traductores · analyzers',
+    heroTagline: 'una spec. muchos backends.',
+    heroSubtitle: 'Construye reglas una vez. Ejecuta en EF Core, SQL, MongoDB, DynamoDB, Elasticsearch, Redis o InMemory.',
+    heroModulesLabel: 'Evaluadores disponibles',
+    statModules: 'paquetes',
+    statCountries: 'stores',
+    statSupported: 'deps core',
+    ctaGetStarted: 'Comenzar →',
+    ctaReadDocs: 'Leer la documentación',
+    featuresSectionTitle: 'Specs que viajan con tus datos',
+    featuresSectionSubtitle: 'Una sola spec se convierte en LINQ, SQL, NoSQL o checks in-memory.',
+    pipelineBadge: 'pipeline de specs',
+    pipelineTitle: 'Construye → traduce → ejecuta',
+    pipelineSubtitle: 'Core construye el arbol de expresiones. Los evaluadores lo traducen al store.',
+    packagesSectionTitle: '8 paquetes NuGet. Instala solo lo que necesitas.',
+    packagesSectionSubtitle: 'Empieza con Core, agrega un evaluador o combina varios stores.',
+    useCasesTitle: 'Donde Vali-Flow encaja mejor',
+    useCasesSubtitle: 'Compone reglas una vez y mantén el comportamiento consistente en tus capas.',
+    useCase1Title: 'Filtros de repositorio',
+    useCase1Desc: 'Construye specs en la capa de aplicación y ejecútalas en EF Core o SQL.',
+    useCase2Title: 'Consistencia multi-store',
+    useCase2Desc: 'Usa la misma spec para MongoDB, DynamoDB, Elasticsearch y Redis.',
+    useCase3Title: 'Testing y validación',
+    useCase3Desc: 'Ejecuta specs in-memory para validar reglas en tests rápidos.',
+    authorBuiltBy: 'Desarrollado por',
+    authorBio: 'Desarrollador .NET y contribuidor de codigo abierto. Tambien autor de',
+    seoTitle: 'Vali-Flow — Una spec. Muchos evaluadores.',
+    seoDesc: 'Ecosistema modular .NET para construir specs y ejecutarlas en EF Core, SQL, MongoDB, DynamoDB, Elasticsearch, Redis e InMemory.',
+    codeComment: '// Construye una spec',
+    copyAriaLabel: 'Copiar código',
+    copyToClipboard: 'Copiar al portapapeles',
+  },
+} as const;
+
+type Locale = keyof typeof TRANSLATIONS;
+function useT() {
+  const { i18n } = useDocusaurusContext();
+  const locale = (i18n.currentLocale === 'es' ? 'es' : 'en') as Locale;
+  return { t: TRANSLATIONS[locale], locale };
+}
+
+// ─── Canvas particle system ───────────────────────────────────────────────────
+
+function useParticles(canvasRef: React.RefObject<HTMLCanvasElement>) {
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let animId: number;
+    let w = 0, h = 0;
+
+    interface Particle {
+      x: number; y: number;
+      vx: number; vy: number;
+      r: number;
+      color: string;
+      alpha: number;
+    }
+
+    const COLORS = ['rgba(79,70,229,', 'rgba(167,139,250,', 'rgba(249,115,22,'];
+    let particles: Particle[] = [];
+
+    function resize() {
+      w = canvas.offsetWidth;
+      h = canvas.offsetHeight;
+      canvas.width = w * window.devicePixelRatio;
+      canvas.height = h * window.devicePixelRatio;
+      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+    }
+
+    function spawn(): Particle {
+      const c = COLORS[Math.floor(Math.random() * COLORS.length)];
+      return {
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35,
+        r: Math.random() * 1.8 + 0.6,
+        color: c,
+        alpha: Math.random() * 0.5 + 0.2,
+      };
+    }
+
+    function init() {
+      const count = Math.floor((w * h) / 8000);
+      particles = Array.from({ length: Math.min(count, 90) }, spawn);
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+
+      // Draw connections
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 120) {
+            const opacity = (1 - dist / 120) * 0.18;
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(79,70,229,${opacity})`;
+            ctx.lineWidth = 0.8;
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Draw particles
+      for (const p of particles) {
+        ctx.beginPath();
+        const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 3);
+        grad.addColorStop(0, `${p.color}${p.alpha})`);
+        grad.addColorStop(1, `${p.color}0)`);
+        ctx.fillStyle = grad;
+        ctx.arc(p.x, p.y, p.r * 3, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Core dot
+        ctx.beginPath();
+        ctx.fillStyle = `${p.color}${p.alpha + 0.3})`;
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Move
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < -20) p.x = w + 20;
+        if (p.x > w + 20) p.x = -20;
+        if (p.y < -20) p.y = h + 20;
+        if (p.y > h + 20) p.y = -20;
+      }
+
+      animId = requestAnimationFrame(draw);
+    }
+
+    resize();
+    init();
+    draw();
+
+    const ro = new ResizeObserver(() => { resize(); init(); });
+    ro.observe(canvas);
+
+    return () => {
+      cancelAnimationFrame(animId);
+      ro.disconnect();
+    };
+  }, [canvasRef]);
+}
+
+// ─── Syntax-highlighted C# code ──────────────────────────────────────────────
+
+type Token = { text: string; cls: string };
+
+const CODE_TOKENS: Token[][] = [
+  [
+    { text: 'builder', cls: 'cVar' }, { text: '.', cls: 'cPunc' }, { text: 'Services', cls: 'cType' }, { text: '.', cls: 'cPunc' },
+    { text: 'AddValiFlowEvaluator', cls: 'cMethod' }, { text: '<', cls: 'cPunc' }, { text: 'Product', cls: 'cType' }, { text: ', ', cls: 'cPunc' },
+    { text: 'AppDbContext', cls: 'cType' }, { text: '>()', cls: 'cPunc' }, { text: ';', cls: 'cPunc' },
+  ],
+  [],
+  [{ text: '// Build a spec', cls: 'cComment' }],
+  [{ text: 'var', cls: 'cKw' }, { text: ' spec ', cls: 'cPunc' }, { text: '=', cls: 'cPunc' }, { text: ' new ', cls: 'cPunc' }, { text: 'ValiFlow', cls: 'cType' }, { text: '<', cls: 'cPunc' }, { text: 'Product', cls: 'cType' }, { text: '>()', cls: 'cPunc' }],
+  [{ text: '    .', cls: 'cPunc' }, { text: 'EqualTo', cls: 'cMethod' }, { text: '(', cls: 'cPunc' }, { text: 'p', cls: 'cVar' }, { text: ' => ', cls: 'cPunc' }, { text: 'p', cls: 'cVar' }, { text: '.', cls: 'cPunc' }, { text: 'IsActive', cls: 'cProp' }, { text: ', ', cls: 'cPunc' }, { text: 'true', cls: 'cKw' }, { text: ')', cls: 'cPunc' }],
+  [{ text: '    .', cls: 'cPunc' }, { text: 'GreaterThan', cls: 'cMethod' }, { text: '(', cls: 'cPunc' }, { text: 'p', cls: 'cVar' }, { text: ' => ', cls: 'cPunc' }, { text: 'p', cls: 'cVar' }, { text: '.', cls: 'cPunc' }, { text: 'Price', cls: 'cProp' }, { text: ', ', cls: 'cPunc' }, { text: '10m', cls: 'cNum' }, { text: ');', cls: 'cPunc' }],
+  [],
+  [{ text: 'var', cls: 'cKw' }, { text: ' result ', cls: 'cPunc' }, { text: '=', cls: 'cPunc' }, { text: ' await ', cls: 'cPunc' }, { text: 'evaluator', cls: 'cVar' }, { text: '.', cls: 'cPunc' }, { text: 'WhereAsync', cls: 'cMethod' }, { text: '(', cls: 'cPunc' }, { text: 'spec', cls: 'cVar' }, { text: ');', cls: 'cPunc' }],
+];
+
+function CodeBlock(): ReactNode {
+  const [copied, setCopied] = useState(false);
+  const { t } = useT();
+  // Build tokens dynamically so the comment is translated
+  const tokens: Token[][] = [
+    CODE_TOKENS[0],
+    CODE_TOKENS[1],
+    [{ text: t.codeComment, cls: 'cComment' }],
+    ...CODE_TOKENS.slice(3),
+  ];
+  const raw = `builder.Services.AddValiFlowEvaluator<Product, AppDbContext>();
+
+${t.codeComment}
+var spec = new ValiFlow<Product>()
+    .EqualTo(p => p.IsActive, true)
+    .GreaterThan(p => p.Price, 10m);
+
+var result = await evaluator.WhereAsync(spec);`;
+
   return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
-      <div className="container">
-        <Heading as="h1" className="hero__title">
-          {siteConfig.title}
-        </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        {/* <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/intro">
-            Docusaurus Tutorial - 5min ⏱️
-          </Link>
-        </div> */}
+    <div className={styles.codeCard}>
+      {/* Window chrome */}
+      <div className={styles.codeChrome}>
+        <span className={styles.chromeDot} data-color="red" />
+        <span className={styles.chromeDot} data-color="yellow" />
+        <span className={styles.chromeDot} data-color="green" />
+        <span className={styles.codeFile}>Program.cs</span>
+        <button
+          className={styles.codeCopyBtn}
+          onClick={() => {
+            navigator.clipboard.writeText(raw).then(() => {
+              setCopied(true);
+              setTimeout(() => setCopied(false), 2000);
+            });
+          }}
+          aria-label={t.copyAriaLabel}
+        >
+          {copied ? (
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+          ) : (
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+            </svg>
+          )}
+        </button>
       </div>
-    </header>
+
+      {/* Code */}
+      <div className={styles.codeBody}>
+        <div className={styles.codeLineNumbers}>
+          {tokens.map((_, i) => (
+            <span key={i} className={styles.codeLineNum}>{i + 1}</span>
+          ))}
+        </div>
+        <pre className={styles.codePre}>
+          <code>
+            {tokens.map((line, li) => (
+              <div key={li} className={styles.codeLine}>
+                {line.map((tok, ti) => (
+                  <span key={ti} className={styles[tok.cls]}>{tok.text}</span>
+                ))}
+              </div>
+            ))}
+          </code>
+        </pre>
+      </div>
+
+      {/* Bottom glow bar */}
+      <div className={styles.codeGlowBar} />
+    </div>
   );
 }
 
-export default function Home(): ReactNode {
-  const {siteConfig} = useDocusaurusContext();
+// ─── Live Clock Panel ─────────────────────────────────────────────────────────
+
+function SpecFlowPanel(): ReactNode {
+  const API_CARDS = [
+    {
+      module: 'Vali-Flow.Core',
+      icon: '🧠',
+      call: 'new ValiFlow<Product>()',
+      result: 'spec built',
+      live: false,
+    },
+    {
+      module: 'Vali-Flow (EF Core)',
+      icon: '🧩',
+      call: 'WhereAsync(spec)',
+      result: 'rows: 42',
+      live: false,
+    },
+    {
+      module: 'Vali-Flow.Sql',
+      icon: '🗄',
+      call: 'ToSql(spec)',
+      result: '"WHERE price > @p0"',
+      live: false,
+    },
+    {
+      module: 'Vali-Flow.InMemory',
+      icon: '🧪',
+      call: 'IsValid(entity)',
+      result: 'valid',
+      live: false,
+    },
+    {
+      module: 'Vali-Flow.NoSql.MongoDB',
+      icon: '🍃',
+      call: 'ToFilter(spec)',
+      result: '{ price: { $gt: 10 } }',
+      live: false,
+    },
+    {
+      module: 'Vali-Flow.NoSql.DynamoDB',
+      icon: '⚡',
+      call: 'ToExpression(spec)',
+      result: 'price > :v0',
+      live: false,
+    },
+    {
+      module: 'Vali-Flow.NoSql.Elasticsearch',
+      icon: '🔎',
+      call: 'ToQuery(spec)',
+      result: '{ range: { price: { gt: 10 }}}',
+      live: false,
+    },
+    {
+      module: 'Vali-Flow.NoSql.Redis',
+      icon: '🧰',
+      call: 'ToRediSearch(spec)',
+      result: '@price:[10 +inf]',
+      live: false,
+    },
+  ];
+
   return (
-    <Layout
-      title={`Welcome ${siteConfig.title}`}
-      description="The Best Builder Fluent Validation <head />">
-      <HomepageHeader />
-      <main>
-        <HomepageFeatures />
-      </main>
-    </Layout>
+    <div className={styles.flowPanel}>
+      {/* Spec flow diagram */}
+      <div className={styles.flowDiagram} aria-label="Spec flow diagram">
+        <div className={styles.flowRow}>
+          <div className={styles.flowNode}>
+            <span className={styles.flowNodeTitle}>Spec</span>
+            <span className={styles.flowNodeMeta}>ValiFlow&lt;T&gt;</span>
+          </div>
+          <div className={styles.flowArrow} />
+          <div className={styles.flowNode}>
+            <span className={styles.flowNodeTitle}>Core</span>
+            <span className={styles.flowNodeMeta}>Expression Tree</span>
+          </div>
+          <div className={styles.flowArrow} />
+          <div className={styles.flowNode}>
+            <span className={styles.flowNodeTitle}>Translator</span>
+            <span className={styles.flowNodeMeta}>EF / SQL / NoSQL</span>
+          </div>
+        </div>
+
+        <div className={styles.flowRow}>
+          <div className={styles.flowNodeAlt}>
+            <span className={styles.flowNodeTitle}>Evaluator</span>
+            <span className={styles.flowNodeMeta}>WhereAsync / IsValid</span>
+          </div>
+          <div className={styles.flowArrowAlt} />
+          <div className={styles.flowNodeAlt}>
+            <span className={styles.flowNodeTitle}>Store</span>
+            <span className={styles.flowNodeMeta}>EF Core · SQL · Mongo</span>
+          </div>
+          <div className={styles.flowArrowAlt} />
+          <div className={styles.flowNodeAlt}>
+            <span className={styles.flowNodeTitle}>Result</span>
+            <span className={styles.flowNodeMeta}>Rows / Matches</span>
+          </div>
+        </div>
+      </div>
+
+      {/* API grid */}
+      <div className={styles.apiGrid}>
+        {API_CARDS.map((card) => (
+          <div key={card.module} className={styles.apiCard}>
+            <div className={styles.apiCardHeader}>
+              <span className={styles.apiCardIcon}>{card.icon}</span>
+              <span className={styles.apiCardModule}>{card.module}</span>
+              {card.live && <span className={styles.apiCardLiveDot} />}
+            </div>
+            <code className={styles.apiCardCall}>{card.call}</code>
+            <div className={styles.apiCardResult}>{card.result}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ─── Module Ecosystem Section (premium animated) ──────────────────────────────
+
+function ModuleSection(): ReactNode {
+  const { t } = useT();
+  const sectionRef = useRef<HTMLElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const codeRef = useRef<HTMLDivElement>(null);
+
+  useParticles(canvasRef as React.RefObject<HTMLCanvasElement>);
+
+  // GSAP entrance animation on scroll
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    let gsapMod: typeof import('gsap') | null = null;
+
+    import('gsap').then((mod) => {
+      gsapMod = mod;
+      const { gsap } = mod;
+
+      import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
+        gsap.registerPlugin(ScrollTrigger);
+
+        if (!sectionRef.current) return;
+
+        gsap.fromTo(
+          headerRef.current,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
+            scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' },
+          }
+        );
+
+        gsap.fromTo(
+          codeRef.current,
+          { opacity: 0, x: 40 },
+          {
+            opacity: 1, x: 0, duration: 0.8, ease: 'power3.out', delay: 0.3,
+            scrollTrigger: { trigger: sectionRef.current, start: 'top 70%' },
+          }
+        );
+      }).catch(() => {
+        gsap.fromTo(headerRef.current, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' });
+        gsap.fromTo(codeRef.current, { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.8, ease: 'power3.out', delay: 0.3 });
+      });
+    });
+
+    return () => {
+      if (gsapMod) {
+        try {
+          // @ts-ignore
+          gsapMod.gsap?.globalTimeline?.clear();
+        } catch { /* ignore */ }
+      }
+    };
+  }, []);
+
+  return (
+    <section ref={sectionRef} className={styles.pipelineSection}>
+      {/* Particle canvas */}
+      <canvas ref={canvasRef as React.RefObject<HTMLCanvasElement>} className={styles.pipelineCanvas} aria-hidden="true" />
+
+      {/* Ambient glows */}
+      <div className={styles.pipelineGlow1} aria-hidden="true" />
+      <div className={styles.pipelineGlow2} aria-hidden="true" />
+
+      <div className={clsx('container', styles.pipelineContainer)}>
+        {/* Header */}
+        <div ref={headerRef} className={clsx(styles.sectionHeader, styles.pipelineHeader)}>
+          <div className={styles.pipelineBadge}>
+            <span className={styles.pipelineBadgePulse} />
+            {t.pipelineBadge}
+          </div>
+          <h2 className={styles.sectionTitle}>{t.pipelineTitle}</h2>
+          <p className={styles.sectionSubtitle}>
+            {t.pipelineSubtitle}
+          </p>
+        </div>
+
+        {/* Top: flow diagram + api cards */}
+        <SpecFlowPanel />
+
+        {/* Bottom: code block */}
+        <div ref={codeRef} className={styles.pipelineCodeCol}>
+          <CodeBlock />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── Sub-components ──────────────────────────────────────────────────────────
+
+function FeatureCard({ icon, title, description, index }: Feature & { index: number }): ReactNode {
+  const num = String(index + 1).padStart(2, '0');
+  return (
+    <div className={styles.featureCard}>
+      <span className={styles.featureNumber}>{num}</span>
+      <div className={styles.featureIconWrap}>
+        <span className={styles.featureIconGlyph}>{icon}</span>
+      </div>
+      <h3 className={styles.featureTitle}>{title}</h3>
+      <p className={styles.featureDescription}>{description}</p>
+    </div>
+  );
+}
+
+function CopyButton({ text }: { text: string }): ReactNode {
+  const [copied, setCopied] = useState(false);
+  return (
+    <button
+      className={styles.copyButton}
+      onClick={() => navigator.clipboard.writeText(text).then(() => { setCopied(true); setTimeout(() => setCopied(false), 2000); })}
+      aria-label="Copy to clipboard"
+    >
+      {copied ? (
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="20 6 9 17 4 12" />
+        </svg>
+      ) : (
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+        </svg>
+      )}
+    </button>
+  );
+}
+
+function PackageCard({ name, description, nuget }: Package): ReactNode {
+  const installCommand = `dotnet add package ${name}`;
+  return (
+    <div className={styles.packageCard}>
+      <div className={styles.packageAccent} aria-hidden="true" />
+      <div className={styles.packageHeader}>
+        <a href={nuget} target="_blank" rel="noopener noreferrer" className={styles.packageName}>
+          <span className={styles.packageChip}>{name}</span>
+        </a>
+      </div>
+      <p className={styles.packageDescription}>{description}</p>
+      <div className={styles.packageInstall}>
+        <code className={styles.packageInstallCode}>{installCommand}</code>
+        <CopyButton text={installCommand} />
+      </div>
+    </div>
+  );
+}
+
+// ─── Clock Ring Decoration ────────────────────────────────────────────────────
+
+function ClockRingDecoration(): ReactNode {
+  return (
+    <div className={styles.clockRing} aria-hidden="true">
+      <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        {/* Spec graph frame */}
+        <rect x="52" y="52" width="296" height="296" rx="28" stroke="rgba(79,70,229,0.18)" strokeWidth="1.2" />
+        <rect x="78" y="78" width="244" height="244" rx="22" stroke="rgba(16,185,129,0.16)" strokeWidth="1.1" />
+
+        {/* Flow lines */}
+        <path d="M120 200 H280" stroke="rgba(79,70,229,0.35)" strokeWidth="2" strokeLinecap="round" />
+        <path d="M200 120 V280" stroke="rgba(16,185,129,0.28)" strokeWidth="2" strokeLinecap="round" />
+        <path d="M140 140 L260 260" stroke="rgba(249,115,22,0.22)" strokeWidth="1.6" strokeLinecap="round" />
+        <path d="M260 140 L140 260" stroke="rgba(139,92,246,0.22)" strokeWidth="1.6" strokeLinecap="round" />
+
+        {/* Nodes */}
+        <circle cx="120" cy="200" r="10" fill="rgba(79,70,229,0.9)" />
+        <circle cx="200" cy="120" r="9" fill="rgba(16,185,129,0.9)" />
+        <circle cx="280" cy="200" r="10" fill="rgba(249,115,22,0.9)" />
+        <circle cx="200" cy="280" r="9" fill="rgba(139,92,246,0.9)" />
+
+        {/* Outer dots */}
+        <circle cx="90" cy="120" r="4" fill="rgba(79,70,229,0.45)" />
+        <circle cx="310" cy="120" r="4" fill="rgba(16,185,129,0.45)" />
+        <circle cx="310" cy="280" r="4" fill="rgba(249,115,22,0.45)" />
+        <circle cx="90" cy="280" r="4" fill="rgba(139,92,246,0.45)" />
+      </svg>
+    </div>
+  );
+}
+
+// ─── Hero ─────────────────────────────────────────────────────────────────────
+
+const MODULES = ['Core', 'EF Core', 'SQL', 'InMemory', 'MongoDB', 'DynamoDB', 'Elasticsearch', 'Redis'];
+
+function Hero(): ReactNode {
+  const [copied, setCopied] = useState(false);
+  const { t } = useT();
+  const installCmd = 'dotnet add package Vali-Flow';
+  return (
+    <section className={styles.hero}>
+      {/* Radial circle grid background */}
+      <div className={styles.heroGrid} aria-hidden="true" />
+      <ClockRingDecoration />
+
+      {/* Large floating orbs */}
+      <div className={styles.heroOrb1} aria-hidden="true" />
+      <div className={styles.heroOrb2} aria-hidden="true" />
+      <div className={styles.heroOrb3} aria-hidden="true" />
+
+      <div className={styles.heroInner}>
+        {/* Badge */}
+        <div className={styles.heroBadge}>
+          <span className={styles.heroBadgePulse} />
+          <span className={styles.heroBadgeDot} />
+          {t.heroBadge}
+        </div>
+
+        {/* Title */}
+        <h1 className={styles.heroTitle}>Vali-Flow</h1>
+
+        {/* Tagline */}
+        <p className={styles.heroTagline}>
+          <span className={styles.heroTaglineComment}>{'// '}</span>
+          {t.heroTagline}
+        </p>
+
+        <p className={styles.heroSubtitle}>{t.heroSubtitle}</p>
+
+        {/* Module pills marquee */}
+        <div className={styles.heroProviders} aria-label={t.heroModulesLabel}>
+          <div className={styles.heroProvidersTrack}>
+            {[...MODULES, ...MODULES].map((m, i) => (
+              <span key={i} className={styles.providerPill}>{m}</span>
+            ))}
+          </div>
+        </div>
+
+        {/* Stats row */}
+        <div className={styles.heroStats}>
+          <div className={styles.heroStat}>
+            <span className={styles.heroStatValue}>8</span>
+            <span className={styles.heroStatLabel}>{t.statModules}</span>
+          </div>
+          <div className={styles.heroStatDivider} aria-hidden="true" />
+          <div className={styles.heroStat}>
+            <span className={styles.heroStatValue}>7</span>
+            <span className={styles.heroStatLabel}>{t.statCountries}</span>
+          </div>
+          <div className={styles.heroStatDivider} aria-hidden="true" />
+          <div className={styles.heroStat}>
+            <span className={styles.heroStatValue}>0 deps</span>
+            <span className={styles.heroStatLabel}>{t.statSupported}</span>
+          </div>
+        </div>
+
+        {/* CTA buttons */}
+        <div className={styles.heroCta}>
+          <Link className={clsx('button', styles.btnPrimary)} to="/docs/quick-start">{t.ctaGetStarted}</Link>
+          <Link className={clsx('button', styles.btnSecondary)} to="/docs/introduction">{t.ctaReadDocs}</Link>
+        </div>
+
+        {/* Install block */}
+        <div className={styles.heroInstallWrap}>
+          <div className={styles.heroInstall}>
+            <span className={styles.heroInstallPrompt}>$</span>
+            <code className={styles.heroInstallCode}>{installCmd}</code>
+            <button
+              className={styles.heroInstallCopy}
+              onClick={() => {
+                navigator.clipboard.writeText(installCmd).then(() => {
+                  setCopied(true);
+                  setTimeout(() => setCopied(false), 2000);
+                });
+              }}
+              aria-label={t.copyToClipboard}
+            >
+              {copied
+                ? <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+                : <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" /></svg>
+              }
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── Features section ─────────────────────────────────────────────────────────
+
+function FeaturesSection(): ReactNode {
+  const { t, locale } = useT();
+  return (
+    <section className={styles.featuresSection}>
+      <div className="container">
+        <div className={styles.sectionHeader}>
+          <h2 className={styles.sectionTitle}>{t.featuresSectionTitle}</h2>
+          <p className={styles.sectionSubtitle}>{t.featuresSectionSubtitle}</p>
+        </div>
+        <div className={styles.featuresGrid}>
+          {(locale === 'es' ? FEATURES_ES : FEATURES).map((f, i) => <FeatureCard key={f.title} {...f} index={i} />)}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── Packages section ─────────────────────────────────────────────────────────
+
+function PackagesSection(): ReactNode {
+  const { t, locale } = useT();
+  return (
+    <section className={styles.packagesSection}>
+      <div className={styles.packagesDivider} aria-hidden="true" />
+      <div className="container">
+        <div className={styles.sectionHeader}>
+          <h2 className={styles.sectionTitle}>{t.packagesSectionTitle}</h2>
+          <p className={styles.sectionSubtitle}>{t.packagesSectionSubtitle}</p>
+        </div>
+        <div className={styles.packagesGrid}>
+          {(locale === 'es' ? PACKAGES_ES : PACKAGES).map((p) => <PackageCard key={p.name} {...p} />)}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── Use Cases section ───────────────────────────────────────────────────────
+
+function UseCasesSection(): ReactNode {
+  const { t } = useT();
+  return (
+    <section className={styles.useCasesSection}>
+      <div className={styles.useCasesGlow} aria-hidden="true" />
+      <div className="container">
+        <div className={styles.sectionHeader}>
+          <h2 className={styles.sectionTitle}>{t.useCasesTitle}</h2>
+          <p className={styles.sectionSubtitle}>{t.useCasesSubtitle}</p>
+        </div>
+        <div className={styles.useCasesGrid}>
+          <div className={styles.useCaseCard}>
+            <div className={styles.useCaseTag}>REPOS</div>
+            <h3 className={styles.useCaseTitle}>{t.useCase1Title}</h3>
+            <p className={styles.useCaseDesc}>{t.useCase1Desc}</p>
+            <code className={styles.useCaseCode}>WhereAsync(spec)</code>
+          </div>
+          <div className={styles.useCaseCard}>
+            <div className={styles.useCaseTag}>MULTI-STORE</div>
+            <h3 className={styles.useCaseTitle}>{t.useCase2Title}</h3>
+            <p className={styles.useCaseDesc}>{t.useCase2Desc}</p>
+            <code className={styles.useCaseCode}>ToFilter / ToQuery / ToSql</code>
+          </div>
+          <div className={styles.useCaseCard}>
+            <div className={styles.useCaseTag}>TESTS</div>
+            <h3 className={styles.useCaseTitle}>{t.useCase3Title}</h3>
+            <p className={styles.useCaseDesc}>{t.useCase3Desc}</p>
+            <code className={styles.useCaseCode}>IsValid(entity)</code>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── Page root ────────────────────────────────────────────────────────────────
+
+const SEO_DESC  = 'Modular .NET ecosystem for building expression-tree specs and executing them across EF Core, SQL, MongoDB, DynamoDB, Elasticsearch, Redis and InMemory.';
+const SEO_URL   = 'https://vali-flow.github.io';
+const SEO_IMAGE = `${SEO_URL}/img/docusaurus-social-card.jpg`;
+
+export default function Home(): ReactNode {
+  const { siteConfig } = useDocusaurusContext();
+  const { t } = useT();
+  return (
+    <>
+      <Head>
+        {/* Primary */}
+        <title>{t.seoTitle}</title>
+        <meta name="description" content={t.seoDesc} />
+        <meta name="robots" content="index, follow" />
+        <meta name="theme-color" content="#4F46E5" />
+        <link rel="canonical" href={SEO_URL} />
+
+        {/* Open Graph */}
+        <meta property="og:type"        content="website" />
+        <meta property="og:url"         content={SEO_URL} />
+        <meta property="og:title"       content={t.seoTitle} />
+        <meta property="og:description" content={t.seoDesc} />
+        <meta property="og:image"       content={SEO_IMAGE} />
+        <meta property="og:image:width"  content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:locale"          content="en_US" />
+        <meta property="og:locale:alternate" content="es_ES" />
+        <meta property="og:site_name" content="Vali-Flow" />
+
+        {/* Twitter / X */}
+        <meta name="twitter:card"        content="summary_large_image" />
+        <meta name="twitter:title"       content={t.seoTitle} />
+        <meta name="twitter:description" content={t.seoDesc} />
+        <meta name="twitter:image"       content={SEO_IMAGE} />
+
+        {/* hreflang i18n */}
+        <link rel="alternate" hrefLang="en" href={SEO_URL} />
+        <link rel="alternate" hrefLang="es" href={`${SEO_URL}/es/`} />
+        <link rel="alternate" hrefLang="x-default" href={SEO_URL} />
+
+        {/* JSON-LD Structured Data */}
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "Vali-Flow",
+          "description": SEO_DESC,
+          "url": SEO_URL,
+          "applicationCategory": "DeveloperApplication",
+          "operatingSystem": ".NET 6, .NET 7, .NET 8, .NET 9",
+          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+          "author": {
+            "@type": "Organization",
+            "name": "UBF21",
+            "url": "https://github.com/UBF21"
+          }
+        })}</script>
+      </Head>
+
+      <Layout title={siteConfig.title} description={t.seoDesc}>
+        <Hero />
+        <main>
+          <FeaturesSection />
+          <ModuleSection />
+          <PackagesSection />
+          <UseCasesSection />
+        </main>
+      </Layout>
+    </>
   );
 }

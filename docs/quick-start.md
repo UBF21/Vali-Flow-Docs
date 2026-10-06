@@ -9,7 +9,7 @@ import quickStartFlow from '@site/static/diagrams/quick-start-flow.drawio';
 
 ## Prerequisites
 
-- .NET 8 or .NET 9
+- .NET 8 or .NET 9 (also runs on .NET 10 via forward compatibility)
 - A C# project (any type: web API, console, test project, etc.)
 
 ---

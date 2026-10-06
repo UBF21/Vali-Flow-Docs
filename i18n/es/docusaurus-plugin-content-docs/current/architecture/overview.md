@@ -87,7 +87,7 @@ Los evaluadores EF Core e InMemory compilan la expresión `ValiFlow<T>` una vez 
 Vali-Flow.sln
 ```
 
-Todos los paquetes apuntan a `net8.0` y `net9.0`.
+Todos los paquetes apuntan a `net8.0` y `net9.0`, y tambien corren sin modificaciones en **.NET 10** gracias a la compatibilidad hacia adelante de .NET.
 
 ---
 

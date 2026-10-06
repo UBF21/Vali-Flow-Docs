@@ -10,7 +10,7 @@ import coreBuilder from '@site/static/diagrams/core-builder.drawio';
 Características principales:
 
 - Sin dependencias de NuGet.
-- Apunta a `net8.0` y `net9.0`.
+- Apunta a `net8.0` y `net9.0` — tambien corre sin modificaciones en **.NET 10** por compatibilidad hacia adelante.
 - Produce árboles `Expression<Func<T, bool>>` estándar, consumibles por LINQ, Entity Framework Core y cualquier otro proveedor LINQ.
 - Soporta validación en memoria con reporte detallado de errores.
 

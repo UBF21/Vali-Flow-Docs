@@ -24,49 +24,49 @@ const FEATURES: Feature[] = [
     icon: LuBrain,
     title: 'Vali-Flow.Core',
     description:
-      'Dependency-free fluent builder for expression trees, validation, and reusable specs.',
+      'Dependency-free fluent builder for expression trees and in-memory validation.',
   },
   {
     icon: SiDotnet,
     title: 'Vali-Flow (EF Core)',
     description:
-      'Translate specs to LINQ and execute against DbSet<T> with async evaluators.',
+      'Wrap an expression in a Specification and run it against DbSet<T> with async evaluators.',
   },
   {
     icon: LuTestTube,
     title: 'Vali-Flow.InMemory',
     description:
-      'Fast in-memory evaluator for unit tests, caching, and local rules.',
+      'Synchronous, zero-dependency evaluator for IEnumerable<T> — unit tests, caches, prototyping.',
   },
   {
     icon: LuDatabase,
     title: 'Vali-Flow.Sql',
     description:
-      'Generate SQL WHERE clauses for Dapper and raw ADO.NET scenarios.',
+      'Translate an expression into a parameterized SQL WHERE clause for Dapper or raw ADO.NET.',
   },
   {
     icon: SiMongodb,
     title: 'Vali-Flow.NoSql.MongoDB',
     description:
-      'Build MongoDB filter definitions directly from specs.',
+      'Translate an expression into a MongoDB BsonDocument filter.',
   },
   {
     icon: LuDatabaseZap,
     title: 'Vali-Flow.NoSql.DynamoDB',
     description:
-      'Translate specs into DynamoDB expressions for fast reads.',
+      'Translate an expression into a DynamoDB FilterExpression for scans and queries.',
   },
   {
     icon: SiElasticsearch,
     title: 'Vali-Flow.NoSql.Elasticsearch',
     description:
-      'Create Elasticsearch queries from a single spec.',
+      'Translate an expression into an Elasticsearch Query object.',
   },
   {
     icon: SiRedis,
     title: 'Vali-Flow.NoSql.Redis',
     description:
-      'Generate Redis/RediSearch filters for fast lookup.',
+      'Translate an expression into a RediSearch query string.',
   },
 ];
 
@@ -75,49 +75,49 @@ const FEATURES_ES: Feature[] = [
     icon: LuBrain,
     title: 'Vali-Flow.Core',
     description:
-      'Builder fluido sin dependencias para expression trees, validacion y specs reutilizables.',
+      'Builder fluido sin dependencias para expression trees y validacion en memoria.',
   },
   {
     icon: SiDotnet,
     title: 'Vali-Flow (EF Core)',
     description:
-      'Traduce specs a LINQ y ejecuta sobre DbSet<T> con evaluadores async.',
+      'Envuelve una expression en una Specification y ejecutala sobre DbSet<T> con evaluadores async.',
   },
   {
     icon: LuTestTube,
     title: 'Vali-Flow.InMemory',
     description:
-      'Evaluador in-memory rapido para tests, cache y reglas locales.',
+      'Evaluador sincrono y sin dependencias para IEnumerable<T> — tests, cache, prototipado.',
   },
   {
     icon: LuDatabase,
     title: 'Vali-Flow.Sql',
     description:
-      'Genera SQL WHERE para Dapper y ADO.NET.',
+      'Traduce una expression a una clausula SQL WHERE parametrizada para Dapper o ADO.NET.',
   },
   {
     icon: SiMongodb,
     title: 'Vali-Flow.NoSql.MongoDB',
     description:
-      'Construye filtros de MongoDB directamente desde specs.',
+      'Traduce una expression a un filtro BsonDocument de MongoDB.',
   },
   {
     icon: LuDatabaseZap,
     title: 'Vali-Flow.NoSql.DynamoDB',
     description:
-      'Traduce specs a expresiones de DynamoDB.',
+      'Traduce una expression a un FilterExpression de DynamoDB para scans y queries.',
   },
   {
     icon: SiElasticsearch,
     title: 'Vali-Flow.NoSql.Elasticsearch',
     description:
-      'Crea queries de Elasticsearch desde una sola spec.',
+      'Traduce una expression a un objeto Query de Elasticsearch.',
   },
   {
     icon: SiRedis,
     title: 'Vali-Flow.NoSql.Redis',
     description:
-      'Genera filtros para Redis/RediSearch.',
+      'Traduce una expression a un query string de RediSearch.',
   },
 ];
 
@@ -130,25 +130,25 @@ interface Package {
 }
 
 const PACKAGES: Package[] = [
-  { name: 'Vali-Flow',                     description: 'EF Core evaluator and main package for relational stores.',              nuget: 'https://www.nuget.org/packages/Vali-Flow' },
-  { name: 'Vali-Flow.Core',                description: 'Core builder for expression-tree specs and validation.',                 nuget: 'https://www.nuget.org/packages/Vali-Flow.Core' },
-  { name: 'Vali-Flow.InMemory',            description: 'In-memory evaluator for tests and local filtering.',                     nuget: 'https://www.nuget.org/packages/Vali-Flow.InMemory' },
-  { name: 'Vali-Flow.Sql',                 description: 'SQL evaluator for Dapper and raw ADO.NET workflows.',                     nuget: 'https://www.nuget.org/packages/Vali-Flow.Sql' },
-  { name: 'Vali-Flow.NoSql.MongoDB',       description: 'MongoDB evaluator using filter definitions.',                            nuget: 'https://www.nuget.org/packages/Vali-Flow.NoSql.MongoDB' },
-  { name: 'Vali-Flow.NoSql.DynamoDB',      description: 'DynamoDB evaluator with native expression translation.',                 nuget: 'https://www.nuget.org/packages/Vali-Flow.NoSql.DynamoDB' },
-  { name: 'Vali-Flow.NoSql.Elasticsearch', description: 'Elasticsearch evaluator for query DSL output.',                          nuget: 'https://www.nuget.org/packages/Vali-Flow.NoSql.Elasticsearch' },
-  { name: 'Vali-Flow.NoSql.Redis',         description: 'Redis evaluator with RediSearch query generation.',                      nuget: 'https://www.nuget.org/packages/Vali-Flow.NoSql.Redis' },
+  { name: 'Vali-Flow',                     description: 'EF Core evaluator — wraps an expression in a Specification and reads/writes via DbSet<T>.', nuget: 'https://www.nuget.org/packages/Vali-Flow' },
+  { name: 'Vali-Flow.Core',                description: 'Core builder for expression trees and in-memory validation.',              nuget: 'https://www.nuget.org/packages/Vali-Flow.Core' },
+  { name: 'Vali-Flow.InMemory',            description: 'Synchronous evaluator for IEnumerable<T> — tests, caches, prototyping.',   nuget: 'https://www.nuget.org/packages/Vali-Flow.InMemory' },
+  { name: 'Vali-Flow.Sql',                 description: 'Translates an expression into a parameterized SQL WHERE clause for Dapper/ADO.NET.', nuget: 'https://www.nuget.org/packages/Vali-Flow.Sql' },
+  { name: 'Vali-Flow.NoSql.MongoDB',       description: 'Translates an expression into a MongoDB BsonDocument filter.',             nuget: 'https://www.nuget.org/packages/Vali-Flow.NoSql.MongoDB' },
+  { name: 'Vali-Flow.NoSql.DynamoDB',      description: 'Translates an expression into a DynamoDB FilterExpression.',               nuget: 'https://www.nuget.org/packages/Vali-Flow.NoSql.DynamoDB' },
+  { name: 'Vali-Flow.NoSql.Elasticsearch', description: 'Translates an expression into an Elasticsearch Query object.',             nuget: 'https://www.nuget.org/packages/Vali-Flow.NoSql.Elasticsearch' },
+  { name: 'Vali-Flow.NoSql.Redis',         description: 'Translates an expression into a RediSearch query string.',                 nuget: 'https://www.nuget.org/packages/Vali-Flow.NoSql.Redis' },
 ];
 
 const PACKAGES_ES: Package[] = [
-  { name: 'Vali-Flow',                     description: 'Evaluador EF Core y paquete principal para stores relacionales.',          nuget: 'https://www.nuget.org/packages/Vali-Flow' },
-  { name: 'Vali-Flow.Core',                description: 'Builder core para specs con expression trees y validacion.',              nuget: 'https://www.nuget.org/packages/Vali-Flow.Core' },
-  { name: 'Vali-Flow.InMemory',            description: 'Evaluador in-memory para tests y filtrado local.',                        nuget: 'https://www.nuget.org/packages/Vali-Flow.InMemory' },
-  { name: 'Vali-Flow.Sql',                 description: 'Evaluador SQL para Dapper y ADO.NET.',                                    nuget: 'https://www.nuget.org/packages/Vali-Flow.Sql' },
-  { name: 'Vali-Flow.NoSql.MongoDB',       description: 'Evaluador MongoDB con filtros nativos.',                                  nuget: 'https://www.nuget.org/packages/Vali-Flow.NoSql.MongoDB' },
-  { name: 'Vali-Flow.NoSql.DynamoDB',      description: 'Evaluador DynamoDB con traduccion de expresiones.',                        nuget: 'https://www.nuget.org/packages/Vali-Flow.NoSql.DynamoDB' },
-  { name: 'Vali-Flow.NoSql.Elasticsearch', description: 'Evaluador Elasticsearch para query DSL.',                                 nuget: 'https://www.nuget.org/packages/Vali-Flow.NoSql.Elasticsearch' },
-  { name: 'Vali-Flow.NoSql.Redis',         description: 'Evaluador Redis con generacion de queries RediSearch.',                    nuget: 'https://www.nuget.org/packages/Vali-Flow.NoSql.Redis' },
+  { name: 'Vali-Flow',                     description: 'Evaluador EF Core — envuelve una expression en una Specification y lee/escribe via DbSet<T>.', nuget: 'https://www.nuget.org/packages/Vali-Flow' },
+  { name: 'Vali-Flow.Core',                description: 'Builder core para expression trees y validacion en memoria.',              nuget: 'https://www.nuget.org/packages/Vali-Flow.Core' },
+  { name: 'Vali-Flow.InMemory',            description: 'Evaluador sincrono para IEnumerable<T> — tests, cache, prototipado.',      nuget: 'https://www.nuget.org/packages/Vali-Flow.InMemory' },
+  { name: 'Vali-Flow.Sql',                 description: 'Traduce una expression a una clausula SQL WHERE parametrizada para Dapper/ADO.NET.', nuget: 'https://www.nuget.org/packages/Vali-Flow.Sql' },
+  { name: 'Vali-Flow.NoSql.MongoDB',       description: 'Traduce una expression a un filtro BsonDocument de MongoDB.',              nuget: 'https://www.nuget.org/packages/Vali-Flow.NoSql.MongoDB' },
+  { name: 'Vali-Flow.NoSql.DynamoDB',      description: 'Traduce una expression a un FilterExpression de DynamoDB.',                nuget: 'https://www.nuget.org/packages/Vali-Flow.NoSql.DynamoDB' },
+  { name: 'Vali-Flow.NoSql.Elasticsearch', description: 'Traduce una expression a un objeto Query de Elasticsearch.',               nuget: 'https://www.nuget.org/packages/Vali-Flow.NoSql.Elasticsearch' },
+  { name: 'Vali-Flow.NoSql.Redis',         description: 'Traduce una expression a un query string de RediSearch.',                  nuget: 'https://www.nuget.org/packages/Vali-Flow.NoSql.Redis' },
 ];
 
 
@@ -157,7 +157,7 @@ const PACKAGES_ES: Package[] = [
 const TRANSLATIONS = {
   en: {
     heroBadge: 'Expression trees · translators · analyzers',
-    heroTagline: 'one spec. many backends.',
+    heroTagline: 'one expression. many backends.',
     heroSubtitle: 'Build fluent rules once. Execute in EF Core, SQL, MongoDB, DynamoDB, Elasticsearch, Redis or InMemory.',
     heroModulesLabel: 'Available evaluators',
     statModules: 'packages',
@@ -165,9 +165,9 @@ const TRANSLATIONS = {
     statSupported: 'core deps',
     ctaGetStarted: 'Get started →',
     ctaReadDocs: 'Read the docs',
-    featuresSectionTitle: 'Specs that travel with your data',
-    featuresSectionSubtitle: 'A single fluent spec becomes LINQ, SQL, NoSQL queries or in-memory checks.',
-    pipelineBadge: 'spec pipeline',
+    featuresSectionTitle: 'Expressions that travel with your data',
+    featuresSectionSubtitle: 'A single fluent expression becomes LINQ, SQL, NoSQL queries or in-memory checks.',
+    pipelineBadge: 'expression pipeline',
     pipelineTitle: 'Build → translate → execute',
     pipelineSubtitle: 'Core builds the expression tree. Evaluators translate it to the store you run.',
     packagesSectionTitle: '8 NuGet packages. Install only what you need.',
@@ -175,17 +175,20 @@ const TRANSLATIONS = {
     useCasesTitle: 'Where Vali-Flow fits best',
     useCasesSubtitle: 'Compose rules once, keep behavior consistent across services and storage layers.',
     useCase1Title: 'Repository Filters',
-    useCase1Desc: 'Build specs in the application layer and run them inside EF Core or raw SQL repos.',
+    useCase1Desc: 'Build expressions in the application layer and run them inside EF Core or raw SQL repos.',
     useCase2Title: 'Cross-Store Consistency',
-    useCase2Desc: 'Use the same spec for MongoDB, DynamoDB, Elasticsearch and Redis search.',
+    useCase2Desc: 'Use the same expression for MongoDB, DynamoDB, Elasticsearch and Redis search.',
     useCase3Title: 'Testing & Validation',
-    useCase3Desc: 'Run specs in memory to validate domain rules in fast unit tests.',
+    useCase3Desc: 'Run expressions in memory to validate domain rules in fast unit tests.',
     authorBuiltBy: 'Built by',
     authorBio: '.NET developer and open-source contributor. Also the author of',
-    seoTitle: 'Vali-Flow — One spec. Many evaluators.',
-    seoDesc: 'Modular .NET ecosystem for building expression-tree specs and executing them across EF Core, SQL, MongoDB, DynamoDB, Elasticsearch, Redis and InMemory.',
-    codeComment: '// Build a spec',
+    seoTitle: 'Vali-Flow — One expression tree. Many evaluators.',
+    seoDesc: 'Modular .NET ecosystem for building ValiFlow expression trees and executing them across EF Core, SQL, MongoDB, DynamoDB, Elasticsearch, Redis and InMemory.',
+    codeComment: '// Build the expression tree',
     codeCommentEf: '// Apply it directly with EF Core',
+    codeCommentDi: '// Register the evaluator (resolves a scoped DbContext)',
+    codeCommentSpec: '// Wrap the filter in a real Specification',
+    codeCommentMaterialize: '// IQueryable<T> is lazy — ToListAsync() is what hits the database',
     codeTabBuilder: 'Builder only',
     codeTabEvaluator: 'Builder + Evaluator',
     copyAriaLabel: 'Copy code',
@@ -193,7 +196,7 @@ const TRANSLATIONS = {
   },
   es: {
     heroBadge: 'Expression trees · traductores · analyzers',
-    heroTagline: 'una spec. muchos backends.',
+    heroTagline: 'una expression. muchos backends.',
     heroSubtitle: 'Construye reglas una vez. Ejecuta en EF Core, SQL, MongoDB, DynamoDB, Elasticsearch, Redis o InMemory.',
     heroModulesLabel: 'Evaluadores disponibles',
     statModules: 'paquetes',
@@ -201,9 +204,9 @@ const TRANSLATIONS = {
     statSupported: 'deps core',
     ctaGetStarted: 'Comenzar →',
     ctaReadDocs: 'Leer la documentación',
-    featuresSectionTitle: 'Specs que viajan con tus datos',
-    featuresSectionSubtitle: 'Una sola spec se convierte en LINQ, SQL, NoSQL o checks in-memory.',
-    pipelineBadge: 'pipeline de specs',
+    featuresSectionTitle: 'Expressions que viajan con tus datos',
+    featuresSectionSubtitle: 'Una sola expression se convierte en LINQ, SQL, NoSQL o checks in-memory.',
+    pipelineBadge: 'pipeline de expressions',
     pipelineTitle: 'Construye → traduce → ejecuta',
     pipelineSubtitle: 'Core construye el arbol de expresiones. Los evaluadores lo traducen al store.',
     packagesSectionTitle: '8 paquetes NuGet. Instala solo lo que necesitas.',
@@ -211,17 +214,20 @@ const TRANSLATIONS = {
     useCasesTitle: 'Donde Vali-Flow encaja mejor',
     useCasesSubtitle: 'Compone reglas una vez y mantén el comportamiento consistente en tus capas.',
     useCase1Title: 'Filtros de repositorio',
-    useCase1Desc: 'Construye specs en la capa de aplicación y ejecútalas en EF Core o SQL.',
+    useCase1Desc: 'Construye expressions en la capa de aplicación y ejecútalas en EF Core o SQL.',
     useCase2Title: 'Consistencia multi-store',
-    useCase2Desc: 'Usa la misma spec para MongoDB, DynamoDB, Elasticsearch y Redis.',
+    useCase2Desc: 'Usa la misma expression para MongoDB, DynamoDB, Elasticsearch y Redis.',
     useCase3Title: 'Testing y validación',
-    useCase3Desc: 'Ejecuta specs in-memory para validar reglas en tests rápidos.',
+    useCase3Desc: 'Ejecuta expressions in-memory para validar reglas en tests rápidos.',
     authorBuiltBy: 'Desarrollado por',
     authorBio: 'Desarrollador .NET y contribuidor de codigo abierto. Tambien autor de',
-    seoTitle: 'Vali-Flow — Una spec. Muchos evaluadores.',
-    seoDesc: 'Ecosistema modular .NET para construir specs y ejecutarlas en EF Core, SQL, MongoDB, DynamoDB, Elasticsearch, Redis e InMemory.',
-    codeComment: '// Construye una spec',
+    seoTitle: 'Vali-Flow — Una expression. Muchos evaluadores.',
+    seoDesc: 'Ecosistema modular .NET para construir expressions y ejecutarlas en EF Core, SQL, MongoDB, DynamoDB, Elasticsearch, Redis e InMemory.',
+    codeComment: '// Construye una expression',
     codeCommentEf: '// Aplicala directamente con EF Core',
+    codeCommentDi: '// Registra el evaluador (resuelve un DbContext scoped)',
+    codeCommentSpec: '// Envuelve el filtro en una Specification real',
+    codeCommentMaterialize: '// IQueryable<T> es lazy — ToListAsync() es lo que llega a la base de datos',
     codeTabBuilder: 'Solo builder',
     codeTabEvaluator: 'Builder + Evaluator',
     copyAriaLabel: 'Copiar código',
@@ -353,66 +359,87 @@ function useParticles(canvasRef: React.RefObject<HTMLCanvasElement>) {
 
 type Token = { text: string; cls: string };
 
-const SPEC_ROWS: Token[][] = [
-  [{ text: 'var', cls: 'cKw' }, { text: ' spec ', cls: 'cPunc' }, { text: '=', cls: 'cPunc' }, { text: ' new ', cls: 'cPunc' }, { text: 'ValiFlow', cls: 'cType' }, { text: '<', cls: 'cPunc' }, { text: 'Product', cls: 'cType' }, { text: '>()', cls: 'cPunc' }],
+const EXPRESSION_ROWS: Token[][] = [
+  [{ text: 'var', cls: 'cKw' }, { text: ' expression ', cls: 'cPunc' }, { text: '=', cls: 'cPunc' }, { text: ' new ', cls: 'cPunc' }, { text: 'ValiFlow', cls: 'cType' }, { text: '<', cls: 'cPunc' }, { text: 'Product', cls: 'cType' }, { text: '>()', cls: 'cPunc' }],
   [{ text: '    .', cls: 'cPunc' }, { text: 'EqualTo', cls: 'cMethod' }, { text: '(', cls: 'cPunc' }, { text: 'p', cls: 'cVar' }, { text: ' => ', cls: 'cPunc' }, { text: 'p', cls: 'cVar' }, { text: '.', cls: 'cPunc' }, { text: 'IsActive', cls: 'cProp' }, { text: ', ', cls: 'cPunc' }, { text: 'true', cls: 'cKw' }, { text: ')', cls: 'cPunc' }],
   [{ text: '    .', cls: 'cPunc' }, { text: 'GreaterThan', cls: 'cMethod' }, { text: '(', cls: 'cPunc' }, { text: 'p', cls: 'cVar' }, { text: ' => ', cls: 'cPunc' }, { text: 'p', cls: 'cVar' }, { text: '.', cls: 'cPunc' }, { text: 'Price', cls: 'cProp' }, { text: ', ', cls: 'cPunc' }, { text: '10m', cls: 'cNum' }, { text: ');', cls: 'cPunc' }],
 ];
 
-const SPEC_RAW = `var spec = new ValiFlow<Product>()
+const EXPRESSION_RAW = `var expression = new ValiFlow<Product>()
     .EqualTo(p => p.IsActive, true)
     .GreaterThan(p => p.Price, 10m);`;
 
 const BUILDER_ONLY_ROWS: Token[][] = [
   [{ text: 'var', cls: 'cKw' }, { text: ' result ', cls: 'cPunc' }, { text: '=', cls: 'cPunc' }, { text: ' await ', cls: 'cPunc' }, { text: 'dbContext', cls: 'cVar' }, { text: '.', cls: 'cPunc' }, { text: 'Products', cls: 'cProp' }],
-  [{ text: '    .', cls: 'cPunc' }, { text: 'Where', cls: 'cMethod' }, { text: '(', cls: 'cPunc' }, { text: 'spec', cls: 'cVar' }, { text: '.', cls: 'cPunc' }, { text: 'Build', cls: 'cMethod' }, { text: '())', cls: 'cPunc' }],
+  [{ text: '    .', cls: 'cPunc' }, { text: 'Where', cls: 'cMethod' }, { text: '(', cls: 'cPunc' }, { text: 'expression', cls: 'cVar' }, { text: '.', cls: 'cPunc' }, { text: 'Build', cls: 'cMethod' }, { text: '())', cls: 'cPunc' }],
   [{ text: '    .', cls: 'cPunc' }, { text: 'ToListAsync', cls: 'cMethod' }, { text: '();', cls: 'cPunc' }],
 ];
 const BUILDER_ONLY_RAW = `var result = await dbContext.Products
-    .Where(spec.Build())
+    .Where(expression.Build())
     .ToListAsync();`;
 
-const EVALUATOR_SETUP_ROW: Token[] = [
-  { text: 'builder', cls: 'cVar' }, { text: '.', cls: 'cPunc' }, { text: 'Services', cls: 'cType' }, { text: '.', cls: 'cPunc' },
-  { text: 'AddValiFlowEvaluator', cls: 'cMethod' }, { text: '<', cls: 'cPunc' }, { text: 'Product', cls: 'cType' }, { text: ', ', cls: 'cPunc' },
-  { text: 'AppDbContext', cls: 'cType' }, { text: '>()', cls: 'cPunc' }, { text: ';', cls: 'cPunc' },
+// Real registration: a typed ValiFlowEvaluator<T> resolved from DI, not a magic extension method
+const EVALUATOR_SETUP_ROWS: Token[][] = [
+  [
+    { text: 'builder', cls: 'cVar' }, { text: '.', cls: 'cPunc' }, { text: 'Services', cls: 'cType' }, { text: '.', cls: 'cPunc' },
+    { text: 'AddScoped', cls: 'cMethod' }, { text: '<', cls: 'cPunc' }, { text: 'ValiFlowEvaluator', cls: 'cType' }, { text: '<', cls: 'cPunc' }, { text: 'Product', cls: 'cType' }, { text: '>>(', cls: 'cPunc' }, { text: 'sp', cls: 'cVar' }, { text: ' => ', cls: 'cPunc' },
+  ],
+  [
+    { text: '    new ', cls: 'cPunc' }, { text: 'ValiFlowEvaluator', cls: 'cType' }, { text: '<', cls: 'cPunc' }, { text: 'Product', cls: 'cType' }, { text: '>(', cls: 'cPunc' },
+    { text: 'sp', cls: 'cVar' }, { text: '.', cls: 'cPunc' }, { text: 'GetRequiredService', cls: 'cMethod' }, { text: '<', cls: 'cPunc' }, { text: 'AppDbContext', cls: 'cType' }, { text: '>());', cls: 'cPunc' },
+  ],
 ];
-const EVALUATOR_SETUP_RAW = 'builder.Services.AddValiFlowEvaluator<Product, AppDbContext>();';
+const EVALUATOR_SETUP_RAW = `builder.Services.AddScoped<ValiFlowEvaluator<Product>>(sp =>
+    new ValiFlowEvaluator<Product>(sp.GetRequiredService<AppDbContext>()));`;
 
-const EVALUATOR_CALL_ROW: Token[] = [
-  { text: 'var', cls: 'cKw' }, { text: ' result ', cls: 'cPunc' }, { text: '=', cls: 'cPunc' }, { text: ' await ', cls: 'cPunc' }, { text: 'evaluator', cls: 'cVar' }, { text: '.', cls: 'cPunc' }, { text: 'WhereAsync', cls: 'cMethod' }, { text: '(', cls: 'cPunc' }, { text: 'spec', cls: 'cVar' }, { text: ');', cls: 'cPunc' },
+// The expression is just a filter — EvaluateQueryAsync needs it wrapped in a real Specification
+const SPEC_WRAP_ROW: Token[] = [
+  { text: 'var', cls: 'cKw' }, { text: ' spec ', cls: 'cPunc' }, { text: '=', cls: 'cPunc' }, { text: ' new ', cls: 'cPunc' }, { text: 'QuerySpecification', cls: 'cType' }, { text: '<', cls: 'cPunc' }, { text: 'Product', cls: 'cType' }, { text: '>()', cls: 'cPunc' }, { text: '.', cls: 'cPunc' }, { text: 'WithFilter', cls: 'cMethod' }, { text: '(', cls: 'cPunc' }, { text: 'expression', cls: 'cVar' }, { text: ');', cls: 'cPunc' },
 ];
-const EVALUATOR_CALL_RAW = 'var result = await evaluator.WhereAsync(spec);';
+const SPEC_WRAP_RAW = 'var spec = new QuerySpecification<Product>().WithFilter(expression);';
+
+// EvaluateQueryAsync returns IQueryable<T> (lazy) — ToListAsync is what actually hits the database
+const EVALUATOR_CALL_ROWS: Token[][] = [
+  [{ text: 'var', cls: 'cKw' }, { text: ' query ', cls: 'cPunc' }, { text: '=', cls: 'cPunc' }, { text: ' await ', cls: 'cPunc' }, { text: 'evaluator', cls: 'cVar' }, { text: '.', cls: 'cPunc' }, { text: 'EvaluateQueryAsync', cls: 'cMethod' }, { text: '(', cls: 'cPunc' }, { text: 'spec', cls: 'cVar' }, { text: ');', cls: 'cPunc' }],
+  [{ text: 'var', cls: 'cKw' }, { text: ' result ', cls: 'cPunc' }, { text: '=', cls: 'cPunc' }, { text: ' await ', cls: 'cPunc' }, { text: 'query', cls: 'cVar' }, { text: '.', cls: 'cPunc' }, { text: 'ToListAsync', cls: 'cMethod' }, { text: '();', cls: 'cPunc' }],
+];
+const EVALUATOR_CALL_RAW = `var query = await evaluator.EvaluateQueryAsync(spec);
+var result = await query.ToListAsync();`;
 
 type CodeTab = 'builder' | 'evaluator';
 type TFn = ReturnType<typeof useT>['t'];
 
-// Shared "build the spec" step; step 2 differs per tab (manual EF Core vs. registered evaluator)
+// Shared "build the expression" step; step 2 differs per tab (manual EF Core vs. registered evaluator)
 function getTabTokens(tab: CodeTab, t: TFn): Token[][] {
   if (tab === 'builder') {
     return [
       [{ text: t.codeComment, cls: 'cComment' }],
-      ...SPEC_ROWS,
+      ...EXPRESSION_ROWS,
       [],
       [{ text: t.codeCommentEf, cls: 'cComment' }],
       ...BUILDER_ONLY_ROWS,
     ];
   }
   return [
-    EVALUATOR_SETUP_ROW,
+    [{ text: t.codeCommentDi, cls: 'cComment' }],
+    ...EVALUATOR_SETUP_ROWS,
     [],
     [{ text: t.codeComment, cls: 'cComment' }],
-    ...SPEC_ROWS,
+    ...EXPRESSION_ROWS,
     [],
-    EVALUATOR_CALL_ROW,
+    [{ text: t.codeCommentSpec, cls: 'cComment' }],
+    SPEC_WRAP_ROW,
+    [],
+    [{ text: t.codeCommentMaterialize, cls: 'cComment' }],
+    ...EVALUATOR_CALL_ROWS,
   ];
 }
 
 function getTabRaw(tab: CodeTab, t: TFn): string {
   if (tab === 'builder') {
-    return `${t.codeComment}\n${SPEC_RAW}\n\n${t.codeCommentEf}\n${BUILDER_ONLY_RAW}`;
+    return `${t.codeComment}\n${EXPRESSION_RAW}\n\n${t.codeCommentEf}\n${BUILDER_ONLY_RAW}`;
   }
-  return `${EVALUATOR_SETUP_RAW}\n\n${t.codeComment}\n${SPEC_RAW}\n\n${EVALUATOR_CALL_RAW}`;
+  return `${t.codeCommentDi}\n${EVALUATOR_SETUP_RAW}\n\n${t.codeComment}\n${EXPRESSION_RAW}\n\n${t.codeCommentSpec}\n${SPEC_WRAP_RAW}\n\n${t.codeCommentMaterialize}\n${EVALUATOR_CALL_RAW}`;
 }
 
 function CodeTabSwitcher({ tab, onChange, t }: { tab: CodeTab; onChange: (t: CodeTab) => void; t: TFn }): ReactNode {
@@ -503,61 +530,61 @@ function CodeBlock(): ReactNode {
 
 // ─── Live Clock Panel ─────────────────────────────────────────────────────────
 
-function SpecFlowPanel(): ReactNode {
+function ExpressionFlowPanel(): ReactNode {
   const API_CARDS = [
     {
       module: 'Vali-Flow.Core',
       icon: LuBrain,
       call: 'new ValiFlow<Product>()',
-      result: 'spec built',
+      result: 'expression built',
       live: false,
     },
     {
       module: 'Vali-Flow (EF Core)',
       icon: SiDotnet,
-      call: 'WhereAsync(spec)',
-      result: 'rows: 42',
+      call: 'evaluator.EvaluateQueryAsync(spec)',
+      result: 'IQueryable<Product>',
       live: false,
     },
     {
       module: 'Vali-Flow.Sql',
       icon: LuDatabase,
-      call: 'ToSql(spec)',
+      call: 'expression.ToSql(dialect)',
       result: '"WHERE price > @p0"',
       live: false,
     },
     {
       module: 'Vali-Flow.InMemory',
       icon: LuTestTube,
-      call: 'IsValid(entity)',
-      result: 'valid',
+      call: 'evaluator.Evaluate(entity, expression)',
+      result: 'true',
       live: false,
     },
     {
       module: 'Vali-Flow.NoSql.MongoDB',
       icon: SiMongodb,
-      call: 'ToFilter(spec)',
+      call: 'expression.ToMongo()',
       result: '{ price: { $gt: 10 } }',
       live: false,
     },
     {
       module: 'Vali-Flow.NoSql.DynamoDB',
       icon: LuDatabaseZap,
-      call: 'ToExpression(spec)',
+      call: 'expression.ToDynamoDB()',
       result: 'price > :v0',
       live: false,
     },
     {
       module: 'Vali-Flow.NoSql.Elasticsearch',
       icon: SiElasticsearch,
-      call: 'ToQuery(spec)',
+      call: 'expression.ToElasticsearch()',
       result: '{ range: { price: { gt: 10 }}}',
       live: false,
     },
     {
       module: 'Vali-Flow.NoSql.Redis',
       icon: SiRedis,
-      call: 'ToRediSearch(spec)',
+      call: 'expression.ToRedisSearch()',
       result: '@price:[10 +inf]',
       live: false,
     },
@@ -565,11 +592,11 @@ function SpecFlowPanel(): ReactNode {
 
   return (
     <div className={styles.flowPanel}>
-      {/* Spec flow diagram */}
-      <div className={styles.flowDiagram} aria-label="Spec flow diagram">
+      {/* Expression flow diagram */}
+      <div className={styles.flowDiagram} aria-label="Expression flow diagram">
         <div className={styles.flowRow}>
           <div className={styles.flowNode}>
-            <span className={styles.flowNodeTitle}>Spec</span>
+            <span className={styles.flowNodeTitle}>Expression</span>
             <span className={styles.flowNodeMeta}>ValiFlow&lt;T&gt;</span>
           </div>
           <div className={styles.flowArrow} />
@@ -587,7 +614,7 @@ function SpecFlowPanel(): ReactNode {
         <div className={styles.flowRow}>
           <div className={styles.flowNodeAlt}>
             <span className={styles.flowNodeTitle}>Evaluator</span>
-            <span className={styles.flowNodeMeta}>WhereAsync / IsValid</span>
+            <span className={styles.flowNodeMeta}>EvaluateQueryAsync / Evaluate</span>
           </div>
           <div className={styles.flowArrowAlt} />
           <div className={styles.flowNodeAlt}>
@@ -702,7 +729,7 @@ function ModuleSection(): ReactNode {
         </div>
 
         {/* Top: flow diagram + api cards */}
-        <SpecFlowPanel />
+        <ExpressionFlowPanel />
 
         {/* Bottom: code block */}
         <div ref={codeRef} className={styles.pipelineCodeCol}>
@@ -776,7 +803,7 @@ function ClockRingDecoration(): ReactNode {
   return (
     <div className={styles.clockRing} aria-hidden="true">
       <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-        {/* Spec graph frame */}
+        {/* Expression graph frame */}
         <rect x="52" y="52" width="296" height="296" rx="28" stroke="rgba(79,70,229,0.18)" strokeWidth="1.2" />
         <rect x="78" y="78" width="244" height="244" rx="22" stroke="rgba(16,185,129,0.16)" strokeWidth="1.1" />
 
@@ -956,19 +983,19 @@ function UseCasesSection(): ReactNode {
             <div className={styles.useCaseTag}>REPOS</div>
             <h3 className={styles.useCaseTitle}>{t.useCase1Title}</h3>
             <p className={styles.useCaseDesc}>{t.useCase1Desc}</p>
-            <code className={styles.useCaseCode}>WhereAsync(spec)</code>
+            <code className={styles.useCaseCode}>EvaluateQueryAsync(spec)</code>
           </div>
           <div className={styles.useCaseCard}>
             <div className={styles.useCaseTag}>MULTI-STORE</div>
             <h3 className={styles.useCaseTitle}>{t.useCase2Title}</h3>
             <p className={styles.useCaseDesc}>{t.useCase2Desc}</p>
-            <code className={styles.useCaseCode}>ToFilter / ToQuery / ToSql</code>
+            <code className={styles.useCaseCode}>ToMongo / ToElasticsearch / ToSql</code>
           </div>
           <div className={styles.useCaseCard}>
             <div className={styles.useCaseTag}>TESTS</div>
             <h3 className={styles.useCaseTitle}>{t.useCase3Title}</h3>
             <p className={styles.useCaseDesc}>{t.useCase3Desc}</p>
-            <code className={styles.useCaseCode}>IsValid(entity)</code>
+            <code className={styles.useCaseCode}>Evaluate(entity, expression)</code>
           </div>
         </div>
       </div>
@@ -978,7 +1005,7 @@ function UseCasesSection(): ReactNode {
 
 // ─── Page root ────────────────────────────────────────────────────────────────
 
-const SEO_DESC  = 'Modular .NET ecosystem for building expression-tree specs and executing them across EF Core, SQL, MongoDB, DynamoDB, Elasticsearch, Redis and InMemory.';
+const SEO_DESC  = 'Modular .NET ecosystem for building ValiFlow expression trees and executing them across EF Core, SQL, MongoDB, DynamoDB, Elasticsearch, Redis and InMemory.';
 const SEO_URL   = 'https://vali-flow.github.io';
 const SEO_IMAGE = `${SEO_URL}/img/docusaurus-social-card.jpg`;
 

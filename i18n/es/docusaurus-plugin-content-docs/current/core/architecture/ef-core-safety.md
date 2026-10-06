@@ -71,17 +71,20 @@ IsAlphanumeric(selector)
 
 Motivo: usan `Regex.IsMatch` internamente, que no tiene equivalente en SQL.
 
-### Métodos basados en StringComparison o char
+### Métodos basados en char
 
 ```csharp
 // No disponibles en ValiFlowQuery<T>:
-EqualToIgnoreCase(selector, value)    // usa StringComparison.OrdinalIgnoreCase
-IsTrimmed(selector)                    // usa char.IsWhiteSpace
-IsLowerCase(selector)                  // usa char-level LINQ
-IsUpperCase(selector)                  // usa char-level LINQ
 HasOnlyDigits(selector)                // usa char.IsDigit
 HasOnlyLetters(selector)               // usa char.IsLetter
 ```
+
+> `EqualToIgnoreCase`, `IsTrimmed`, `IsLowerCase` e `IsUpperCase` **sí están
+> disponibles** en `ValiFlowQuery<T>` — cada uno tiene su propia
+> reimplementación EF-safe en `StringExpressionQuery` (por ejemplo, `IsTrimmed`
+> se traduce a `val == val.Trim()`, y `EqualToIgnoreCase` a una comparación
+> basada en `ToLower()`). El analyzer VF001 los marcaba incorrectamente como
+> no traducibles hasta que ese falso positivo se corrigió en v2.0.3.
 
 ### Métodos de colección con predicados lambda
 

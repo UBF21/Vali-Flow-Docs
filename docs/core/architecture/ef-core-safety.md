@@ -71,17 +71,20 @@ IsAlphanumeric(selector)
 
 Reason: they use `Regex.IsMatch` internally, which has no SQL equivalent.
 
-### StringComparison or char-Based Methods
+### char-Based Methods
 
 ```csharp
 // Not available in ValiFlowQuery<T>:
-EqualToIgnoreCase(selector, value)    // uses StringComparison.OrdinalIgnoreCase
-IsTrimmed(selector)                    // uses char.IsWhiteSpace
-IsLowerCase(selector)                  // uses char-level LINQ
-IsUpperCase(selector)                  // uses char-level LINQ
 HasOnlyDigits(selector)                // uses char.IsDigit
 HasOnlyLetters(selector)               // uses char.IsLetter
 ```
+
+> `EqualToIgnoreCase`, `IsTrimmed`, `IsLowerCase`, and `IsUpperCase` **are**
+> available on `ValiFlowQuery<T>` — each has its own EF Core-safe
+> reimplementation in `StringExpressionQuery` (e.g. `IsTrimmed` translates to
+> `val == val.Trim()`, `EqualToIgnoreCase` to a `ToLower()`-based comparison).
+> They were incorrectly flagged as non-translatable by the VF001 analyzer
+> until that false positive was fixed in v2.0.3.
 
 ### Collection Methods with Lambda Predicates
 

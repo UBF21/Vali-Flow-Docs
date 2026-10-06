@@ -216,6 +216,31 @@ El compilador C# trata ambas como una sola clase.
 
 ---
 
+## Diagnósticos: VFGEN001 y VFGEN002
+
+El generador reporta dos diagnósticos en tiempo de compilación cuando `[ForwardInterface]` se usa incorrectamente, en vez de ignorar el campo en silencio:
+
+| Diagnóstico | Disparador | Efecto |
+|---|---|---|
+| `VFGEN001` | El tipo del campo marcado no es una interfaz. | No se genera ningún método de forwarding para ese campo. |
+| `VFGEN002` | La interfaz del campo marcado no tiene miembros a delegar (ningún método). | No se genera ningún método de forwarding para ese campo. |
+
+```csharp
+[ForwardInterface]
+private readonly NotAnInterface _field = new();
+// warning VFGEN001: Field '_field' is marked [ForwardInterface] but its
+// type is not an interface; no forwarding methods will be generated
+
+[ForwardInterface]
+private readonly IEmpty _field = null!;
+// warning VFGEN002: Interface 'IEmpty' has no methods to forward; no
+// forwarding methods will be generated for this field
+```
+
+Ambos son diagnósticos de severidad `Warning` reportados por el propio `ForwardingGenerator` (no por un proyecto de analyzer separado), por lo que aparecen en el IDE y en la salida del build igual que `VF001` — sin ellos, un campo `[ForwardInterface]` mal configurado fallaría en silencio: el generador simplemente no produciría métodos para ese campo, sin ninguna indicación de por qué.
+
+---
+
 ## Qué NO hace el generador
 
 El generador solo genera métodos de **delegación** (forwarding). No genera:

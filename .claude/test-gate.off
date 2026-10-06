@@ -1,0 +1,1 @@
+Docusaurus content/marketing site — no test runner installed (no vitest/jest/testing-library in package.json). test-reminder.sh's premise (business logic needs characterization tests) doesn't apply here.

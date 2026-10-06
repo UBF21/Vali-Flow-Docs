@@ -1062,6 +1062,45 @@
   position: relative;
 }
 
+.codeTabs {
+  display: flex;
+  gap: 0.35rem;
+  padding: 0.6rem 0.75rem 0;
+  background: rgba(255,255,255,0.03);
+}
+
+.codeTab {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px 6px 0 0;
+  padding: 0.35rem 0.75rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  color: #475569;
+  cursor: pointer;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.codeTab:hover {
+  color: #D6DBFF;
+}
+
+.codeTabActive {
+  color: #D6DBFF;
+  background: #09090d;
+  border-color: rgba(79,70,229,0.28);
+  border-bottom-color: transparent;
+}
+
+[data-theme='light'] .codeTabs {
+  background: #f8f6ff;
+}
+
+[data-theme='light'] .codeTabActive {
+  background: #ffffff;
+  color: #1e1b4b;
+}
+
 .codeChrome {
   display: flex;
   align-items: center;

@@ -5,62 +5,65 @@ import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
+import type { IconType } from 'react-icons';
+import { SiDotnet, SiMongodb, SiElasticsearch, SiRedis } from 'react-icons/si';
+import { LuBrain, LuTestTube, LuDatabase, LuDatabaseZap } from 'react-icons/lu';
 
 import styles from './index.module.css';
 
 // ─── Feature data ────────────────────────────────────────────────────────────
 
 interface Feature {
-  icon: string;
+  icon: IconType;
   title: string;
   description: string;
 }
 
 const FEATURES: Feature[] = [
   {
-    icon: '🧠',
+    icon: LuBrain,
     title: 'Vali-Flow.Core',
     description:
       'Dependency-free fluent builder for expression trees, validation, and reusable specs.',
   },
   {
-    icon: '🧩',
+    icon: SiDotnet,
     title: 'Vali-Flow (EF Core)',
     description:
       'Translate specs to LINQ and execute against DbSet<T> with async evaluators.',
   },
   {
-    icon: '🧪',
+    icon: LuTestTube,
     title: 'Vali-Flow.InMemory',
     description:
       'Fast in-memory evaluator for unit tests, caching, and local rules.',
   },
   {
-    icon: '🗄',
+    icon: LuDatabase,
     title: 'Vali-Flow.Sql',
     description:
       'Generate SQL WHERE clauses for Dapper and raw ADO.NET scenarios.',
   },
   {
-    icon: '🍃',
+    icon: SiMongodb,
     title: 'Vali-Flow.NoSql.MongoDB',
     description:
       'Build MongoDB filter definitions directly from specs.',
   },
   {
-    icon: '⚡',
+    icon: LuDatabaseZap,
     title: 'Vali-Flow.NoSql.DynamoDB',
     description:
       'Translate specs into DynamoDB expressions for fast reads.',
   },
   {
-    icon: '🔎',
+    icon: SiElasticsearch,
     title: 'Vali-Flow.NoSql.Elasticsearch',
     description:
       'Create Elasticsearch queries from a single spec.',
   },
   {
-    icon: '🧰',
+    icon: SiRedis,
     title: 'Vali-Flow.NoSql.Redis',
     description:
       'Generate Redis/RediSearch filters for fast lookup.',
@@ -69,49 +72,49 @@ const FEATURES: Feature[] = [
 
 const FEATURES_ES: Feature[] = [
   {
-    icon: '🧠',
+    icon: LuBrain,
     title: 'Vali-Flow.Core',
     description:
       'Builder fluido sin dependencias para expression trees, validacion y specs reutilizables.',
   },
   {
-    icon: '🧩',
+    icon: SiDotnet,
     title: 'Vali-Flow (EF Core)',
     description:
       'Traduce specs a LINQ y ejecuta sobre DbSet<T> con evaluadores async.',
   },
   {
-    icon: '🧪',
+    icon: LuTestTube,
     title: 'Vali-Flow.InMemory',
     description:
       'Evaluador in-memory rapido para tests, cache y reglas locales.',
   },
   {
-    icon: '🗄',
+    icon: LuDatabase,
     title: 'Vali-Flow.Sql',
     description:
       'Genera SQL WHERE para Dapper y ADO.NET.',
   },
   {
-    icon: '🍃',
+    icon: SiMongodb,
     title: 'Vali-Flow.NoSql.MongoDB',
     description:
       'Construye filtros de MongoDB directamente desde specs.',
   },
   {
-    icon: '⚡',
+    icon: LuDatabaseZap,
     title: 'Vali-Flow.NoSql.DynamoDB',
     description:
       'Traduce specs a expresiones de DynamoDB.',
   },
   {
-    icon: '🔎',
+    icon: SiElasticsearch,
     title: 'Vali-Flow.NoSql.Elasticsearch',
     description:
       'Crea queries de Elasticsearch desde una sola spec.',
   },
   {
-    icon: '🧰',
+    icon: SiRedis,
     title: 'Vali-Flow.NoSql.Redis',
     description:
       'Genera filtros para Redis/RediSearch.',
@@ -182,6 +185,9 @@ const TRANSLATIONS = {
     seoTitle: 'Vali-Flow — One spec. Many evaluators.',
     seoDesc: 'Modular .NET ecosystem for building expression-tree specs and executing them across EF Core, SQL, MongoDB, DynamoDB, Elasticsearch, Redis and InMemory.',
     codeComment: '// Build a spec',
+    codeCommentEf: '// Apply it directly with EF Core',
+    codeTabBuilder: 'Builder only',
+    codeTabEvaluator: 'Builder + Evaluator',
     copyAriaLabel: 'Copy code',
     copyToClipboard: 'Copy to clipboard',
   },
@@ -215,6 +221,9 @@ const TRANSLATIONS = {
     seoTitle: 'Vali-Flow — Una spec. Muchos evaluadores.',
     seoDesc: 'Ecosistema modular .NET para construir specs y ejecutarlas en EF Core, SQL, MongoDB, DynamoDB, Elasticsearch, Redis e InMemory.',
     codeComment: '// Construye una spec',
+    codeCommentEf: '// Aplicala directamente con EF Core',
+    codeTabBuilder: 'Solo builder',
+    codeTabEvaluator: 'Builder + Evaluator',
     copyAriaLabel: 'Copiar código',
     copyToClipboard: 'Copiar al portapapeles',
   },
@@ -344,92 +353,149 @@ function useParticles(canvasRef: React.RefObject<HTMLCanvasElement>) {
 
 type Token = { text: string; cls: string };
 
-const CODE_TOKENS: Token[][] = [
-  [
-    { text: 'builder', cls: 'cVar' }, { text: '.', cls: 'cPunc' }, { text: 'Services', cls: 'cType' }, { text: '.', cls: 'cPunc' },
-    { text: 'AddValiFlowEvaluator', cls: 'cMethod' }, { text: '<', cls: 'cPunc' }, { text: 'Product', cls: 'cType' }, { text: ', ', cls: 'cPunc' },
-    { text: 'AppDbContext', cls: 'cType' }, { text: '>()', cls: 'cPunc' }, { text: ';', cls: 'cPunc' },
-  ],
-  [],
-  [{ text: '// Build a spec', cls: 'cComment' }],
+const SPEC_ROWS: Token[][] = [
   [{ text: 'var', cls: 'cKw' }, { text: ' spec ', cls: 'cPunc' }, { text: '=', cls: 'cPunc' }, { text: ' new ', cls: 'cPunc' }, { text: 'ValiFlow', cls: 'cType' }, { text: '<', cls: 'cPunc' }, { text: 'Product', cls: 'cType' }, { text: '>()', cls: 'cPunc' }],
   [{ text: '    .', cls: 'cPunc' }, { text: 'EqualTo', cls: 'cMethod' }, { text: '(', cls: 'cPunc' }, { text: 'p', cls: 'cVar' }, { text: ' => ', cls: 'cPunc' }, { text: 'p', cls: 'cVar' }, { text: '.', cls: 'cPunc' }, { text: 'IsActive', cls: 'cProp' }, { text: ', ', cls: 'cPunc' }, { text: 'true', cls: 'cKw' }, { text: ')', cls: 'cPunc' }],
   [{ text: '    .', cls: 'cPunc' }, { text: 'GreaterThan', cls: 'cMethod' }, { text: '(', cls: 'cPunc' }, { text: 'p', cls: 'cVar' }, { text: ' => ', cls: 'cPunc' }, { text: 'p', cls: 'cVar' }, { text: '.', cls: 'cPunc' }, { text: 'Price', cls: 'cProp' }, { text: ', ', cls: 'cPunc' }, { text: '10m', cls: 'cNum' }, { text: ');', cls: 'cPunc' }],
-  [],
-  [{ text: 'var', cls: 'cKw' }, { text: ' result ', cls: 'cPunc' }, { text: '=', cls: 'cPunc' }, { text: ' await ', cls: 'cPunc' }, { text: 'evaluator', cls: 'cVar' }, { text: '.', cls: 'cPunc' }, { text: 'WhereAsync', cls: 'cMethod' }, { text: '(', cls: 'cPunc' }, { text: 'spec', cls: 'cVar' }, { text: ');', cls: 'cPunc' }],
 ];
 
-function CodeBlock(): ReactNode {
-  const [copied, setCopied] = useState(false);
-  const { t } = useT();
-  // Build tokens dynamically so the comment is translated
-  const tokens: Token[][] = [
-    CODE_TOKENS[0],
-    CODE_TOKENS[1],
-    [{ text: t.codeComment, cls: 'cComment' }],
-    ...CODE_TOKENS.slice(3),
-  ];
-  const raw = `builder.Services.AddValiFlowEvaluator<Product, AppDbContext>();
-
-${t.codeComment}
-var spec = new ValiFlow<Product>()
+const SPEC_RAW = `var spec = new ValiFlow<Product>()
     .EqualTo(p => p.IsActive, true)
-    .GreaterThan(p => p.Price, 10m);
+    .GreaterThan(p => p.Price, 10m);`;
 
-var result = await evaluator.WhereAsync(spec);`;
+const BUILDER_ONLY_ROWS: Token[][] = [
+  [{ text: 'var', cls: 'cKw' }, { text: ' result ', cls: 'cPunc' }, { text: '=', cls: 'cPunc' }, { text: ' await ', cls: 'cPunc' }, { text: 'dbContext', cls: 'cVar' }, { text: '.', cls: 'cPunc' }, { text: 'Products', cls: 'cProp' }],
+  [{ text: '    .', cls: 'cPunc' }, { text: 'Where', cls: 'cMethod' }, { text: '(', cls: 'cPunc' }, { text: 'spec', cls: 'cVar' }, { text: '.', cls: 'cPunc' }, { text: 'Build', cls: 'cMethod' }, { text: '())', cls: 'cPunc' }],
+  [{ text: '    .', cls: 'cPunc' }, { text: 'ToListAsync', cls: 'cMethod' }, { text: '();', cls: 'cPunc' }],
+];
+const BUILDER_ONLY_RAW = `var result = await dbContext.Products
+    .Where(spec.Build())
+    .ToListAsync();`;
+
+const EVALUATOR_SETUP_ROW: Token[] = [
+  { text: 'builder', cls: 'cVar' }, { text: '.', cls: 'cPunc' }, { text: 'Services', cls: 'cType' }, { text: '.', cls: 'cPunc' },
+  { text: 'AddValiFlowEvaluator', cls: 'cMethod' }, { text: '<', cls: 'cPunc' }, { text: 'Product', cls: 'cType' }, { text: ', ', cls: 'cPunc' },
+  { text: 'AppDbContext', cls: 'cType' }, { text: '>()', cls: 'cPunc' }, { text: ';', cls: 'cPunc' },
+];
+const EVALUATOR_SETUP_RAW = 'builder.Services.AddValiFlowEvaluator<Product, AppDbContext>();';
+
+const EVALUATOR_CALL_ROW: Token[] = [
+  { text: 'var', cls: 'cKw' }, { text: ' result ', cls: 'cPunc' }, { text: '=', cls: 'cPunc' }, { text: ' await ', cls: 'cPunc' }, { text: 'evaluator', cls: 'cVar' }, { text: '.', cls: 'cPunc' }, { text: 'WhereAsync', cls: 'cMethod' }, { text: '(', cls: 'cPunc' }, { text: 'spec', cls: 'cVar' }, { text: ');', cls: 'cPunc' },
+];
+const EVALUATOR_CALL_RAW = 'var result = await evaluator.WhereAsync(spec);';
+
+type CodeTab = 'builder' | 'evaluator';
+type TFn = ReturnType<typeof useT>['t'];
+
+// Shared "build the spec" step; step 2 differs per tab (manual EF Core vs. registered evaluator)
+function getTabTokens(tab: CodeTab, t: TFn): Token[][] {
+  if (tab === 'builder') {
+    return [
+      [{ text: t.codeComment, cls: 'cComment' }],
+      ...SPEC_ROWS,
+      [],
+      [{ text: t.codeCommentEf, cls: 'cComment' }],
+      ...BUILDER_ONLY_ROWS,
+    ];
+  }
+  return [
+    EVALUATOR_SETUP_ROW,
+    [],
+    [{ text: t.codeComment, cls: 'cComment' }],
+    ...SPEC_ROWS,
+    [],
+    EVALUATOR_CALL_ROW,
+  ];
+}
+
+function getTabRaw(tab: CodeTab, t: TFn): string {
+  if (tab === 'builder') {
+    return `${t.codeComment}\n${SPEC_RAW}\n\n${t.codeCommentEf}\n${BUILDER_ONLY_RAW}`;
+  }
+  return `${EVALUATOR_SETUP_RAW}\n\n${t.codeComment}\n${SPEC_RAW}\n\n${EVALUATOR_CALL_RAW}`;
+}
+
+function CodeTabSwitcher({ tab, onChange, t }: { tab: CodeTab; onChange: (t: CodeTab) => void; t: TFn }): ReactNode {
+  return (
+    <div className={styles.codeTabs} role="tablist">
+      <button type="button" role="tab" aria-selected={tab === 'builder'}
+        className={clsx(styles.codeTab, tab === 'builder' && styles.codeTabActive)}
+        onClick={() => onChange('builder')}>
+        {t.codeTabBuilder}
+      </button>
+      <button type="button" role="tab" aria-selected={tab === 'evaluator'}
+        className={clsx(styles.codeTab, tab === 'evaluator' && styles.codeTabActive)}
+        onClick={() => onChange('evaluator')}>
+        {t.codeTabEvaluator}
+      </button>
+    </div>
+  );
+}
+
+function CodeCopyButton({ raw, ariaLabel }: { raw: string; ariaLabel: string }): ReactNode {
+  const [copied, setCopied] = useState(false);
+  const onCopy = () => {
+    navigator.clipboard.writeText(raw).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }).catch((err) => console.error('[CodeBlock] clipboard write failed', err));
+  };
+  return (
+    <button className={styles.codeCopyBtn} onClick={onCopy} aria-label={ariaLabel}>
+      {copied ? (
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="20 6 9 17 4 12" />
+        </svg>
+      ) : (
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+        </svg>
+      )}
+    </button>
+  );
+}
+
+function CodeLines({ tokens }: { tokens: Token[][] }): ReactNode {
+  return (
+    <div className={styles.codeBody}>
+      <div className={styles.codeLineNumbers}>
+        {tokens.map((_, i) => (
+          <span key={i} className={styles.codeLineNum}>{i + 1}</span>
+        ))}
+      </div>
+      <pre className={styles.codePre}>
+        <code>
+          {tokens.map((line, li) => (
+            <div key={li} className={styles.codeLine}>
+              {line.map((tok, ti) => (
+                <span key={ti} className={styles[tok.cls]}>{tok.text}</span>
+              ))}
+            </div>
+          ))}
+        </code>
+      </pre>
+    </div>
+  );
+}
+
+function CodeBlock(): ReactNode {
+  const [tab, setTab] = useState<CodeTab>('builder');
+  const { t } = useT();
+  const tokens = getTabTokens(tab, t);
+  const raw = getTabRaw(tab, t);
 
   return (
     <div className={styles.codeCard}>
-      {/* Window chrome */}
+      <CodeTabSwitcher tab={tab} onChange={setTab} t={t} />
       <div className={styles.codeChrome}>
         <span className={styles.chromeDot} data-color="red" />
         <span className={styles.chromeDot} data-color="yellow" />
         <span className={styles.chromeDot} data-color="green" />
         <span className={styles.codeFile}>Program.cs</span>
-        <button
-          className={styles.codeCopyBtn}
-          onClick={() => {
-            navigator.clipboard.writeText(raw).then(() => {
-              setCopied(true);
-              setTimeout(() => setCopied(false), 2000);
-            });
-          }}
-          aria-label={t.copyAriaLabel}
-        >
-          {copied ? (
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="20 6 9 17 4 12" />
-            </svg>
-          ) : (
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-            </svg>
-          )}
-        </button>
+        <CodeCopyButton raw={raw} ariaLabel={t.copyAriaLabel} />
       </div>
-
-      {/* Code */}
-      <div className={styles.codeBody}>
-        <div className={styles.codeLineNumbers}>
-          {tokens.map((_, i) => (
-            <span key={i} className={styles.codeLineNum}>{i + 1}</span>
-          ))}
-        </div>
-        <pre className={styles.codePre}>
-          <code>
-            {tokens.map((line, li) => (
-              <div key={li} className={styles.codeLine}>
-                {line.map((tok, ti) => (
-                  <span key={ti} className={styles[tok.cls]}>{tok.text}</span>
-                ))}
-              </div>
-            ))}
-          </code>
-        </pre>
-      </div>
-
-      {/* Bottom glow bar */}
+      <CodeLines tokens={tokens} />
       <div className={styles.codeGlowBar} />
     </div>
   );
@@ -441,56 +507,56 @@ function SpecFlowPanel(): ReactNode {
   const API_CARDS = [
     {
       module: 'Vali-Flow.Core',
-      icon: '🧠',
+      icon: LuBrain,
       call: 'new ValiFlow<Product>()',
       result: 'spec built',
       live: false,
     },
     {
       module: 'Vali-Flow (EF Core)',
-      icon: '🧩',
+      icon: SiDotnet,
       call: 'WhereAsync(spec)',
       result: 'rows: 42',
       live: false,
     },
     {
       module: 'Vali-Flow.Sql',
-      icon: '🗄',
+      icon: LuDatabase,
       call: 'ToSql(spec)',
       result: '"WHERE price > @p0"',
       live: false,
     },
     {
       module: 'Vali-Flow.InMemory',
-      icon: '🧪',
+      icon: LuTestTube,
       call: 'IsValid(entity)',
       result: 'valid',
       live: false,
     },
     {
       module: 'Vali-Flow.NoSql.MongoDB',
-      icon: '🍃',
+      icon: SiMongodb,
       call: 'ToFilter(spec)',
       result: '{ price: { $gt: 10 } }',
       live: false,
     },
     {
       module: 'Vali-Flow.NoSql.DynamoDB',
-      icon: '⚡',
+      icon: LuDatabaseZap,
       call: 'ToExpression(spec)',
       result: 'price > :v0',
       live: false,
     },
     {
       module: 'Vali-Flow.NoSql.Elasticsearch',
-      icon: '🔎',
+      icon: SiElasticsearch,
       call: 'ToQuery(spec)',
       result: '{ range: { price: { gt: 10 }}}',
       live: false,
     },
     {
       module: 'Vali-Flow.NoSql.Redis',
-      icon: '🧰',
+      icon: SiRedis,
       call: 'ToRediSearch(spec)',
       result: '@price:[10 +inf]',
       live: false,
@@ -541,7 +607,7 @@ function SpecFlowPanel(): ReactNode {
         {API_CARDS.map((card) => (
           <div key={card.module} className={styles.apiCard}>
             <div className={styles.apiCardHeader}>
-              <span className={styles.apiCardIcon}>{card.icon}</span>
+              <span className={styles.apiCardIcon}><card.icon size="1em" aria-hidden="true" /></span>
               <span className={styles.apiCardModule}>{card.module}</span>
               {card.live && <span className={styles.apiCardLiveDot} />}
             </div>
@@ -649,13 +715,13 @@ function ModuleSection(): ReactNode {
 
 // ─── Sub-components ──────────────────────────────────────────────────────────
 
-function FeatureCard({ icon, title, description, index }: Feature & { index: number }): ReactNode {
+function FeatureCard({ icon: Icon, title, description, index }: Feature & { index: number }): ReactNode {
   const num = String(index + 1).padStart(2, '0');
   return (
     <div className={styles.featureCard}>
       <span className={styles.featureNumber}>{num}</span>
       <div className={styles.featureIconWrap}>
-        <span className={styles.featureIconGlyph}>{icon}</span>
+        <span className={styles.featureIconGlyph}><Icon size="1.25em" aria-hidden="true" /></span>
       </div>
       <h3 className={styles.featureTitle}>{title}</h3>
       <p className={styles.featureDescription}>{description}</p>

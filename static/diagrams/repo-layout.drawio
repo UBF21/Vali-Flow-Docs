@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2025-04-11T00:00:00.000Z" agent="draw.io" version="21.0.0">
+  <diagram id="repo-layout" name="Repository Layout">
+    <mxGraphModel dx="1200" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="t1" value="Repository Layout" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=20;fontStyle=1;fontColor=#4F46E5;" vertex="1" parent="1">
+          <mxGeometry x="120" y="20" width="860" height="40" as="geometry" />
+        </mxCell>        <mxCell id="n0" value="Vali-Flow
+EF Core evaluator" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0B1020;strokeColor=#4F46E5;fontColor=#E5E7EB;" vertex="1" parent="1">
+          <mxGeometry x="120" y="80" width="420" height="52" as="geometry" />
+        </mxCell>        <mxCell id="n1" value="Vali-Flow.InMemory
+In-memory evaluator" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0B1020;strokeColor=#4F46E5;fontColor=#E5E7EB;" vertex="1" parent="1">
+          <mxGeometry x="600" y="80" width="420" height="52" as="geometry" />
+        </mxCell>        <mxCell id="n2" value="Vali-Flow.Sql
+SQL translator + builders" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0B1020;strokeColor=#4F46E5;fontColor=#E5E7EB;" vertex="1" parent="1">
+          <mxGeometry x="120" y="144" width="420" height="52" as="geometry" />
+        </mxCell>        <mxCell id="n3" value="Vali-Flow.NoSql
+Shared IR + visitor base" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0B1020;strokeColor=#4F46E5;fontColor=#E5E7EB;" vertex="1" parent="1">
+          <mxGeometry x="600" y="144" width="420" height="52" as="geometry" />
+        </mxCell>        <mxCell id="n4" value="Vali-Flow.NoSql.MongoDB
+MongoDB adapter" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0B1020;strokeColor=#4F46E5;fontColor=#E5E7EB;" vertex="1" parent="1">
+          <mxGeometry x="120" y="208" width="420" height="52" as="geometry" />
+        </mxCell>        <mxCell id="n5" value="Vali-Flow.NoSql.DynamoDB
+DynamoDB adapter" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0B1020;strokeColor=#4F46E5;fontColor=#E5E7EB;" vertex="1" parent="1">
+          <mxGeometry x="600" y="208" width="420" height="52" as="geometry" />
+        </mxCell>        <mxCell id="n6" value="Vali-Flow.NoSql.Elasticsearch
+Elasticsearch adapter" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0B1020;strokeColor=#4F46E5;fontColor=#E5E7EB;" vertex="1" parent="1">
+          <mxGeometry x="120" y="272" width="420" height="52" as="geometry" />
+        </mxCell>        <mxCell id="n7" value="Vali-Flow.NoSql.Redis
+Redis adapter" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0B1020;strokeColor=#4F46E5;fontColor=#E5E7EB;" vertex="1" parent="1">
+          <mxGeometry x="600" y="272" width="420" height="52" as="geometry" />
+        </mxCell>        <mxCell id="n8" value="Vali-Flow.Abstractions
+Shared interfaces" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0B1020;strokeColor=#4F46E5;fontColor=#E5E7EB;" vertex="1" parent="1">
+          <mxGeometry x="120" y="336" width="420" height="52" as="geometry" />
+        </mxCell>        <mxCell id="n9" value="Vali-Flow.Benchmarks
+BenchmarkDotNet" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0B1020;strokeColor=#4F46E5;fontColor=#E5E7EB;" vertex="1" parent="1">
+          <mxGeometry x="600" y="336" width="420" height="52" as="geometry" />
+        </mxCell>        <mxCell id="n10" value="Vali-Flow.Tests
+EF Core evaluator tests" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0B1020;strokeColor=#4F46E5;fontColor=#E5E7EB;" vertex="1" parent="1">
+          <mxGeometry x="120" y="400" width="420" height="52" as="geometry" />
+        </mxCell>        <mxCell id="n11" value="Vali-Flow.InMemory.Tests
+InMemory tests" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0B1020;strokeColor=#4F46E5;fontColor=#E5E7EB;" vertex="1" parent="1">
+          <mxGeometry x="600" y="400" width="420" height="52" as="geometry" />
+        </mxCell>        <mxCell id="n12" value="Vali-Flow.Sql.Tests
+SQL translator tests" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0B1020;strokeColor=#4F46E5;fontColor=#E5E7EB;" vertex="1" parent="1">
+          <mxGeometry x="120" y="464" width="420" height="52" as="geometry" />
+        </mxCell>        <mxCell id="n13" value="Vali-Flow.NoSql.Tests
+NoSQL base tests" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0B1020;strokeColor=#4F46E5;fontColor=#E5E7EB;" vertex="1" parent="1">
+          <mxGeometry x="600" y="464" width="420" height="52" as="geometry" />
+        </mxCell>        <mxCell id="n14" value="Vali-Flow.NoSql.DynamoDB.Tests
+DynamoDB tests" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0B1020;strokeColor=#4F46E5;fontColor=#E5E7EB;" vertex="1" parent="1">
+          <mxGeometry x="120" y="528" width="420" height="52" as="geometry" />
+        </mxCell>        <mxCell id="n15" value="docs
+Documentation (en/ + es)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0B1020;strokeColor=#4F46E5;fontColor=#E5E7EB;" vertex="1" parent="1">
+          <mxGeometry x="600" y="528" width="420" height="52" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

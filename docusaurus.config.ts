@@ -2,94 +2,134 @@ import { themes as prismThemes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
-
 const config: Config = {
-  title: 'Vali-Flow',
-  tagline: `Simplifies data validation in C# .NET.`,
-  favicon: 'img/logo_principal.ico',
+  plugins: [
+    // Fix: webpack-dev-server v5 injects webpack/hot/dev-server as an entry,
+    // but module.hot is not available in Docusaurus's webpack 5 setup, causing
+    // an uncaught error. NormalModuleReplacementPlugin intercepts the module
+    // at resolution time and replaces it with a safe shim.
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (() => ({
+      name: 'webpack-hmr-shim',
+      configureWebpack(_config: unknown, isServer: boolean) {
+        if (isServer) return undefined;
+        // eslint-disable-next-line @typescript-eslint/no-require-imports
+        const webpack = require('webpack');
+        return {
+          plugins: [
+            new webpack.NormalModuleReplacementPlugin(
+              /webpack[/\\]hot[/\\]dev-server/,
+              // eslint-disable-next-line @typescript-eslint/no-require-imports
+              require.resolve('./src/webpack-hmr-shim.js'),
+            ),
+          ],
+        };
+      },
+    })) as any,
+    'docusaurus-plugin-drawio',
+    function drawioWebpackLoader() {
+      return {
+        name: 'drawio-webpack-loader',
+        configureWebpack() {
+          return {
+            module: {
+              rules: [{ test: /\.drawio$/, type: 'asset/source' }],
+            },
+          };
+        },
+      };
+    },
+  ],
 
-  // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
+  title: 'Vali-Flow',
+  tagline: '// one spec. four evaluators.',
+  favicon: 'img/favicon.ico',
+
+  url: 'https://vali-flow.github.io',
   baseUrl: '/',
 
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'UBF21', // Usually your GitHub org/user name.
-  projectName: 'Vali-Flow-Docs', // Usually your repo name.
+  organizationName: 'vali-flow',
+  projectName: 'vali-flow',
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
+  trailingSlash: false,
+
+  stylesheets: [
+    {
+      href: 'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Space+Mono:wght@400;500&display=swap',
+      type: 'text/css',
+    },
+  ],
+
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'es'],
+    localeConfigs: {
+      en: { label: 'English', direction: 'ltr', htmlLang: 'en' },
+      es: { label: 'Español', direction: 'ltr', htmlLang: 'es' },
+    },
   },
-  
+
+  markdown: { format: 'mdx' },
+
   presets: [
     [
       'classic',
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
+          routeBasePath: 'docs',
+          editUrl: 'https://github.com/UBF21/Vali-Flow/tree/main/',
+          showLastUpdateTime: false,
         },
-        blog: {
-          showReadingTime: true,
-          feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
-          },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-          // Useful options to enforce blogging best practices
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
-        },
-        theme: {
-          customCss: './src/css/custom.css',
+        blog: false,
+        theme: { customCss: './src/css/custom.css' },
+        sitemap: {
+          changefreq: 'weekly',
+          priority: 0.5,
+          ignorePatterns: ['/tags/**'],
+          filename: 'sitemap.xml',
         },
       } satisfies Preset.Options,
     ],
   ],
 
   themeConfig: {
-    // Replace with your project's social card
-    image: 'img/logo_princial.png',
+    image: 'img/logo.png',
+    metadata: [
+      { name: 'robots', content: 'index, follow' },
+      { name: 'theme-color', content: '#4F46E5' },
+      { name: 'keywords', content: '.NET, NuGet, C#, specification pattern, expression trees, LINQ, EF Core, Dapper, SQL, NoSQL, MongoDB, DynamoDB, Elasticsearch, Redis, validation, Vali-Flow' },
+      { name: 'author', content: 'Felipe Montenegro' },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:site_name', content: 'Vali-Flow' },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:site', content: '@vali_flow' },
+    ],
+    colorMode: { defaultMode: 'dark', respectPrefersColorScheme: true },
     navbar: {
       title: 'Vali-Flow',
-      logo: {
-        alt: 'My Site Logo',
-        src: 'img/logo.svg',
-        srcDark: 'img/logo_dark.svg'
-      },
+      logo: { alt: 'Vali-Flow', src: 'img/logo.png' },
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          sidebarId: 'docsSidebar',
           position: 'left',
           label: 'Docs',
         },
-        { to: '/blog', label: 'Blog', position: 'left' },
+        { type: 'localeDropdown', position: 'right' },
         {
-          href: 'https://github.com/UBF21',
-          label: 'GitHub',
+          href: 'https://www.nuget.org/packages/Vali-Flow',
+          label: 'NuGet',
           position: 'right',
         },
         {
-          type: 'localeDropdown',
+          href: 'https://github.com/UBF21/Vali-Flow',
+          label: 'GitHub',
           position: 'right',
-
-        }
+        },
       ],
     },
     footer: {
@@ -98,45 +138,40 @@ const config: Config = {
         {
           title: 'Docs',
           items: [
-            {
-              label: 'Tutorial',
-              to: '/docs/Introduction/intro',
-            },
+            { label: 'Introduction', to: '/docs/introduction' },
+            { label: 'Quick Start', to: '/docs/quick-start' },
+            { label: 'Core', to: '/docs/core/getting-started' },
+            { label: 'Evaluators', to: '/docs/adapters/ef-core' },
           ],
         },
         {
-          title: 'Community',
+          title: 'Packages',
           items: [
-            {
-              label: 'Instagram',
-              href: 'https://www.instagram.com/felipe_rmm/',
-            },
-            {
-              label: 'Linkedin',
-              href: 'https://www.linkedin.com/in/felipe-rafael-montenegro-morriberon-a79a341b2/',
-            },
+            { label: 'Vali-Flow', href: 'https://www.nuget.org/packages/Vali-Flow' },
+            { label: 'Vali-Flow.Core', href: 'https://www.nuget.org/packages/Vali-Flow.Core' },
+            { label: 'Vali-Flow.InMemory', href: 'https://www.nuget.org/packages/Vali-Flow.InMemory' },
+            { label: 'Vali-Flow.Sql', href: 'https://www.nuget.org/packages/Vali-Flow.Sql' },
+            { label: 'Vali-Flow.NoSql.MongoDB', href: 'https://www.nuget.org/packages/Vali-Flow.NoSql.MongoDB' },
+            { label: 'Vali-Flow.NoSql.DynamoDB', href: 'https://www.nuget.org/packages/Vali-Flow.NoSql.DynamoDB' },
+            { label: 'Vali-Flow.NoSql.Elasticsearch', href: 'https://www.nuget.org/packages/Vali-Flow.NoSql.Elasticsearch' },
+            { label: 'Vali-Flow.NoSql.Redis', href: 'https://www.nuget.org/packages/Vali-Flow.NoSql.Redis' },
           ],
         },
         {
           title: 'More',
           items: [
-            {
-              label: 'Blog',
-              to: '/blog',
-            },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/UBF21',
-            },
+            { label: 'Vali-Tempo', href: 'https://github.com/UBF21/Vali-Tempo' },
+            { label: 'Vali-Mediator', href: 'https://github.com/UBF21/Vali-Mediator' },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Vali-Flow, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} The Vali-Flow Contributors. Built with Docusaurus.`,
     },
-    // prism: {
-    //   theme: prismThemes.github,
-    //   darkTheme: prismThemes.dracula,
-    // },
+    prism: {
+      theme: prismThemes.oneLight,
+      darkTheme: prismThemes.oneDark,
+      additionalLanguages: ['csharp', 'bash', 'json', 'yaml', 'markup'],
+    },
   } satisfies Preset.ThemeConfig,
 };
 

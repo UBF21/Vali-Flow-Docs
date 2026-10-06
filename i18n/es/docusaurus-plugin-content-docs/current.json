@@ -1,18 +1,42 @@
 {
   "version.label": {
-    "message": "Next",
+    "message": "Siguiente",
     "description": "The label for version current"
   },
-  "sidebar.tutorialSidebar.category.Tutorial - Basics": {
-    "message": "Tutorial - Basics",
-    "description": "The label for category Tutorial - Basics in sidebar tutorialSidebar"
+  "sidebar.docsSidebar.category.Vali-Time": {
+    "message": "Vali-Time",
+    "description": "The label for category 'Vali-Time' in sidebar 'docsSidebar'"
   },
-  "sidebar.tutorialSidebar.category.Tutorial - Basics.link.generated-index.description": {
-    "message": "5 minutes to learn the most important Docusaurus concepts.",
-    "description": "The generated-index page description for category Tutorial - Basics in sidebar tutorialSidebar"
+  "sidebar.docsSidebar.category.Vali-Range": {
+    "message": "Vali-Range",
+    "description": "The label for category 'Vali-Range' in sidebar 'docsSidebar'"
   },
-  "sidebar.tutorialSidebar.category.Tutorial - Extras": {
-    "message": "Tutorial - Extras",
-    "description": "The label for category Tutorial - Extras in sidebar tutorialSidebar"
+  "sidebar.docsSidebar.category.Vali-Calendar": {
+    "message": "Vali-Calendar",
+    "description": "The label for category 'Vali-Calendar' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Vali-Duration": {
+    "message": "Vali-Duration",
+    "description": "The label for category 'Vali-Duration' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Vali-CountDown": {
+    "message": "Vali-CountDown",
+    "description": "The label for category 'Vali-CountDown' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Vali-Age": {
+    "message": "Vali-Age",
+    "description": "The label for category 'Vali-Age' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Vali-Schedule": {
+    "message": "Vali-Schedule",
+    "description": "The label for category 'Vali-Schedule' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Vali-Holiday": {
+    "message": "Vali-Holiday",
+    "description": "The label for category 'Vali-Holiday' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Vali-TimeZone": {
+    "message": "Vali-TimeZone",
+    "description": "The label for category 'Vali-TimeZone' in sidebar 'docsSidebar'"
   }
 }

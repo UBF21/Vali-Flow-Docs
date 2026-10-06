@@ -122,6 +122,33 @@ const sidebars: SidebarsConfig = {
                 'adapters/nosql/redis/limitations',
               ],
             },
+            {
+              type: 'category',
+              label: 'Couchbase',
+              items: [
+                'adapters/nosql/couchbase/overview',
+                'adapters/nosql/couchbase/reference',
+                'adapters/nosql/couchbase/limitations',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'CosmosDb',
+              items: [
+                'adapters/nosql/cosmosdb/overview',
+                'adapters/nosql/cosmosdb/reference',
+                'adapters/nosql/cosmosdb/limitations',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Firestore',
+              items: [
+                'adapters/nosql/firestore/overview',
+                'adapters/nosql/firestore/reference',
+                'adapters/nosql/firestore/limitations',
+              ],
+            },
           ],
         },
       ],
@@ -168,6 +195,9 @@ const sidebars: SidebarsConfig = {
             'changelog/vali-flow-nosql-dynamodb',
             'changelog/vali-flow-nosql-elasticsearch',
             'changelog/vali-flow-nosql-redis',
+            'changelog/vali-flow-nosql-couchbase',
+            'changelog/vali-flow-nosql-cosmosdb',
+            'changelog/vali-flow-nosql-firestore',
           ],
         },
       ],

@@ -6,8 +6,8 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 import type { IconType } from 'react-icons';
-import { SiDotnet, SiMongodb, SiElasticsearch, SiRedis } from 'react-icons/si';
-import { LuBrain, LuTestTube, LuDatabase, LuDatabaseZap } from 'react-icons/lu';
+import { SiDotnet, SiMongodb, SiElasticsearch, SiRedis, SiCouchbase, SiGooglecloud } from 'react-icons/si';
+import { LuBrain, LuTestTube, LuDatabase, LuDatabaseZap, LuCloud } from 'react-icons/lu';
 
 import styles from './index.module.css';
 
@@ -68,6 +68,24 @@ const FEATURES: Feature[] = [
     description:
       'Translate an expression into a RediSearch query string.',
   },
+  {
+    icon: SiCouchbase,
+    title: 'Vali-Flow.NoSql.Couchbase',
+    description:
+      'Translate an expression into a Couchbase N1QL WHERE clause fragment.',
+  },
+  {
+    icon: LuCloud,
+    title: 'Vali-Flow.NoSql.CosmosDb',
+    description:
+      'Translate an expression into an Azure Cosmos DB SQL API WHERE clause fragment.',
+  },
+  {
+    icon: SiGooglecloud,
+    title: 'Vali-Flow.NoSql.Firestore',
+    description:
+      'Translate an expression into a native Google.Cloud.Firestore Filter.',
+  },
 ];
 
 const FEATURES_ES: Feature[] = [
@@ -119,6 +137,24 @@ const FEATURES_ES: Feature[] = [
     description:
       'Traduce una expression a un query string de RediSearch.',
   },
+  {
+    icon: SiCouchbase,
+    title: 'Vali-Flow.NoSql.Couchbase',
+    description:
+      'Traduce una expression a una clausula WHERE de Couchbase N1QL.',
+  },
+  {
+    icon: LuCloud,
+    title: 'Vali-Flow.NoSql.CosmosDb',
+    description:
+      'Traduce una expression a una clausula WHERE de Azure Cosmos DB SQL API.',
+  },
+  {
+    icon: SiGooglecloud,
+    title: 'Vali-Flow.NoSql.Firestore',
+    description:
+      'Traduce una expression a un Filter nativo de Google.Cloud.Firestore.',
+  },
 ];
 
 // ─── Package data ─────────────────────────────────────────────────────────────
@@ -138,6 +174,9 @@ const PACKAGES: Package[] = [
   { name: 'Vali-Flow.NoSql.DynamoDB',      description: 'Translates an expression into a DynamoDB FilterExpression.',               nuget: 'https://www.nuget.org/packages/Vali-Flow.NoSql.DynamoDB' },
   { name: 'Vali-Flow.NoSql.Elasticsearch', description: 'Translates an expression into an Elasticsearch Query object.',             nuget: 'https://www.nuget.org/packages/Vali-Flow.NoSql.Elasticsearch' },
   { name: 'Vali-Flow.NoSql.Redis',         description: 'Translates an expression into a RediSearch query string.',                 nuget: 'https://www.nuget.org/packages/Vali-Flow.NoSql.Redis' },
+  { name: 'Vali-Flow.NoSql.Couchbase',     description: 'Translates an expression into a Couchbase N1QL WHERE fragment + params.',   nuget: 'https://www.nuget.org/packages/Vali-Flow.NoSql.Couchbase' },
+  { name: 'Vali-Flow.NoSql.CosmosDb',      description: 'Translates an expression into an Azure Cosmos DB SQL API WHERE fragment.',  nuget: 'https://www.nuget.org/packages/Vali-Flow.NoSql.CosmosDb' },
+  { name: 'Vali-Flow.NoSql.Firestore',     description: 'Translates an expression into a native Google.Cloud.Firestore Filter.',     nuget: 'https://www.nuget.org/packages/Vali-Flow.NoSql.Firestore' },
 ];
 
 const PACKAGES_ES: Package[] = [
@@ -149,6 +188,9 @@ const PACKAGES_ES: Package[] = [
   { name: 'Vali-Flow.NoSql.DynamoDB',      description: 'Traduce una expression a un FilterExpression de DynamoDB.',                nuget: 'https://www.nuget.org/packages/Vali-Flow.NoSql.DynamoDB' },
   { name: 'Vali-Flow.NoSql.Elasticsearch', description: 'Traduce una expression a un objeto Query de Elasticsearch.',               nuget: 'https://www.nuget.org/packages/Vali-Flow.NoSql.Elasticsearch' },
   { name: 'Vali-Flow.NoSql.Redis',         description: 'Traduce una expression a un query string de RediSearch.',                  nuget: 'https://www.nuget.org/packages/Vali-Flow.NoSql.Redis' },
+  { name: 'Vali-Flow.NoSql.Couchbase',     description: 'Traduce una expression a una clausula WHERE de Couchbase N1QL + params.',    nuget: 'https://www.nuget.org/packages/Vali-Flow.NoSql.Couchbase' },
+  { name: 'Vali-Flow.NoSql.CosmosDb',      description: 'Traduce una expression a una clausula WHERE de Azure Cosmos DB SQL API.',    nuget: 'https://www.nuget.org/packages/Vali-Flow.NoSql.CosmosDb' },
+  { name: 'Vali-Flow.NoSql.Firestore',     description: 'Traduce una expression a un Filter nativo de Google.Cloud.Firestore.',       nuget: 'https://www.nuget.org/packages/Vali-Flow.NoSql.Firestore' },
 ];
 
 
@@ -158,7 +200,7 @@ const TRANSLATIONS = {
   en: {
     heroBadge: 'Expression trees · translators · analyzers',
     heroTagline: 'one expression. many backends.',
-    heroSubtitle: 'Build fluent rules once. Execute in EF Core, SQL, MongoDB, DynamoDB, Elasticsearch, Redis or InMemory.',
+    heroSubtitle: 'Build fluent rules once. Execute across 10 stores — EF Core, SQL, MongoDB, DynamoDB, Elasticsearch, Redis, Couchbase, Cosmos DB, Firestore or InMemory.',
     heroModulesLabel: 'Available evaluators',
     statModules: 'packages',
     statCountries: 'stores',
@@ -170,20 +212,20 @@ const TRANSLATIONS = {
     pipelineBadge: 'expression pipeline',
     pipelineTitle: 'Build → translate → execute',
     pipelineSubtitle: 'Core builds the expression tree. Evaluators translate it to the store you run.',
-    packagesSectionTitle: '8 NuGet packages. Install only what you need.',
+    packagesSectionTitle: '11 NuGet packages. Install only what you need.',
     packagesSectionSubtitle: 'Start with Core, add one evaluator, or mix multiple stores.',
     useCasesTitle: 'Where Vali-Flow fits best',
     useCasesSubtitle: 'Compose rules once, keep behavior consistent across services and storage layers.',
     useCase1Title: 'Repository Filters',
     useCase1Desc: 'Build expressions in the application layer and run them inside EF Core or raw SQL repos.',
     useCase2Title: 'Cross-Store Consistency',
-    useCase2Desc: 'Use the same expression for MongoDB, DynamoDB, Elasticsearch and Redis search.',
+    useCase2Desc: 'Use the same expression across all 7 NoSQL stores — MongoDB, DynamoDB, Elasticsearch, Redis, Couchbase, Cosmos DB, Firestore.',
     useCase3Title: 'Testing & Validation',
     useCase3Desc: 'Run expressions in memory to validate domain rules in fast unit tests.',
     authorBuiltBy: 'Built by',
     authorBio: '.NET developer and open-source contributor. Also the author of',
     seoTitle: 'Vali-Flow — One expression tree. Many evaluators.',
-    seoDesc: 'Modular .NET ecosystem for building ValiFlow expression trees and executing them across EF Core, SQL, MongoDB, DynamoDB, Elasticsearch, Redis and InMemory.',
+    seoDesc: 'Modular .NET ecosystem for building ValiFlow expression trees and executing them across EF Core, SQL, MongoDB, DynamoDB, Elasticsearch, Redis, Couchbase, Cosmos DB, Firestore and InMemory.',
     codeComment: '// Build the expression tree',
     codeCommentEf: '// Apply it directly with EF Core',
     codeCommentDi: '// Register the evaluator (resolves a scoped DbContext)',
@@ -197,7 +239,7 @@ const TRANSLATIONS = {
   es: {
     heroBadge: 'Expression trees · traductores · analyzers',
     heroTagline: 'una expression. muchos backends.',
-    heroSubtitle: 'Construye reglas una vez. Ejecuta en EF Core, SQL, MongoDB, DynamoDB, Elasticsearch, Redis o InMemory.',
+    heroSubtitle: 'Construye reglas una vez. Ejecuta en 10 stores — EF Core, SQL, MongoDB, DynamoDB, Elasticsearch, Redis, Couchbase, Cosmos DB, Firestore o InMemory.',
     heroModulesLabel: 'Evaluadores disponibles',
     statModules: 'paquetes',
     statCountries: 'stores',
@@ -209,14 +251,14 @@ const TRANSLATIONS = {
     pipelineBadge: 'pipeline de expressions',
     pipelineTitle: 'Construye → traduce → ejecuta',
     pipelineSubtitle: 'Core construye el arbol de expresiones. Los evaluadores lo traducen al store.',
-    packagesSectionTitle: '8 paquetes NuGet. Instala solo lo que necesitas.',
+    packagesSectionTitle: '11 paquetes NuGet. Instala solo lo que necesitas.',
     packagesSectionSubtitle: 'Empieza con Core, agrega un evaluador o combina varios stores.',
     useCasesTitle: 'Donde Vali-Flow encaja mejor',
     useCasesSubtitle: 'Compone reglas una vez y mantén el comportamiento consistente en tus capas.',
     useCase1Title: 'Filtros de repositorio',
     useCase1Desc: 'Construye expressions en la capa de aplicación y ejecútalas en EF Core o SQL.',
     useCase2Title: 'Consistencia multi-store',
-    useCase2Desc: 'Usa la misma expression para MongoDB, DynamoDB, Elasticsearch y Redis.',
+    useCase2Desc: 'Usa la misma expression en los 7 stores NoSQL — MongoDB, DynamoDB, Elasticsearch, Redis, Couchbase, Cosmos DB, Firestore.',
     useCase3Title: 'Testing y validación',
     useCase3Desc: 'Ejecuta expressions in-memory para validar reglas en tests rápidos.',
     authorBuiltBy: 'Desarrollado por',
@@ -588,6 +630,27 @@ function ExpressionFlowPanel(): ReactNode {
       result: '@price:[10 +inf]',
       live: false,
     },
+    {
+      module: 'Vali-Flow.NoSql.Couchbase',
+      icon: SiCouchbase,
+      call: 'expression.ToCouchbase()',
+      result: 'price > $p0',
+      live: false,
+    },
+    {
+      module: 'Vali-Flow.NoSql.CosmosDb',
+      icon: LuCloud,
+      call: 'expression.ToCosmosDb()',
+      result: 'c.price > @p0',
+      live: false,
+    },
+    {
+      module: 'Vali-Flow.NoSql.Firestore',
+      icon: SiGooglecloud,
+      call: 'expression.ToFirestore()',
+      result: 'Filter.GreaterThan(...)',
+      live: false,
+    },
   ];
 
   return (
@@ -831,7 +894,7 @@ function ClockRingDecoration(): ReactNode {
 
 // ─── Hero ─────────────────────────────────────────────────────────────────────
 
-const MODULES = ['Core', 'EF Core', 'SQL', 'InMemory', 'MongoDB', 'DynamoDB', 'Elasticsearch', 'Redis'];
+const MODULES = ['Core', 'EF Core', 'SQL', 'InMemory', 'MongoDB', 'DynamoDB', 'Elasticsearch', 'Redis', 'Couchbase', 'CosmosDb', 'Firestore'];
 
 function Hero(): ReactNode {
   const [copied, setCopied] = useState(false);
@@ -879,12 +942,12 @@ function Hero(): ReactNode {
         {/* Stats row */}
         <div className={styles.heroStats}>
           <div className={styles.heroStat}>
-            <span className={styles.heroStatValue}>8</span>
+            <span className={styles.heroStatValue}>11</span>
             <span className={styles.heroStatLabel}>{t.statModules}</span>
           </div>
           <div className={styles.heroStatDivider} aria-hidden="true" />
           <div className={styles.heroStat}>
-            <span className={styles.heroStatValue}>7</span>
+            <span className={styles.heroStatValue}>10</span>
             <span className={styles.heroStatLabel}>{t.statCountries}</span>
           </div>
           <div className={styles.heroStatDivider} aria-hidden="true" />
@@ -1005,7 +1068,7 @@ function UseCasesSection(): ReactNode {
 
 // ─── Page root ────────────────────────────────────────────────────────────────
 
-const SEO_DESC  = 'Modular .NET ecosystem for building ValiFlow expression trees and executing them across EF Core, SQL, MongoDB, DynamoDB, Elasticsearch, Redis and InMemory.';
+const SEO_DESC  = 'Modular .NET ecosystem for building ValiFlow expression trees and executing them across EF Core, SQL, MongoDB, DynamoDB, Elasticsearch, Redis, Couchbase, Cosmos DB, Firestore and InMemory.';
 const SEO_URL   = 'https://vali-flow.github.io';
 const SEO_IMAGE = `${SEO_URL}/img/docusaurus-social-card.jpg`;
 

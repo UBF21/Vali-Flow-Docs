@@ -15,6 +15,19 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) · Versioning: 
 
 ---
 
+## [1.2.0] — 2026-10-06
+
+### Added
+- Optional `tag` parameter across read/write/grouped methods, wired to `ValiFlowDiagnostics` Activity tracing.
+
+### Changed
+- `ValiFlowEvaluator<T, TProperty>` (904 lines) split into `Bridge`/`Read`/`Write`/`Grouped` partial files — no public API change.
+
+### Fixed
+- `Update(entity, externalList)` could leak the updated entity into the internal store on a later bare `SaveChanges()` call.
+
+---
+
 ## [1.1.5] — 2026-04-15
 
 ### Fixed

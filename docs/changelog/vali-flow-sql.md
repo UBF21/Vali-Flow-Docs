@@ -15,6 +15,19 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) · Versioning: 
 
 ---
 
+## [1.2.0] — 2026-10-06
+
+### Added
+- `SetAllFrom(entity, exclude...)` — reflection-based bulk column mapper, added to `SqlInsertBuilder`/`SqlUpdateBuilder`.
+- All 6 builders' `Build()` wrapped with `ValiFlowDiagnostics` Activity tracing.
+
+### Fixed
+- **Security — SQL identifier injection**: builders interpolated table/schema/type names directly; added `SqlIdentifierGuard` (regex whitelist) validating all identifiers before interpolation.
+- `OrIgnore`/`OrReplace` dialect guard bug, `Set()`-after-`SelectFrom()` silent data loss, `Where()` double-call silently overwriting the first condition instead of combining.
+- Added `AllowDeleteUnmatched()` guard required before `WhenNotMatchedBySourceDelete` in `SqlMergeBuilder` (prevents accidental unguarded deletes in a MERGE).
+
+---
+
 ## [1.1.1] — 2026-04-15
 
 ### Fixed

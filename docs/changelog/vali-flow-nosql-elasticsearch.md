@@ -15,6 +15,17 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) · Versioning: 
 
 ---
 
+## [1.2.0] — 2026-10-06
+
+### Added
+- `ValiFlowDiagnostics` Activity tracing wrapped around `Translate(...)`.
+- `MaxInValues` cap (65,536, matching `index.max_terms_count`) on `.In(...)` value lists.
+
+### Fixed
+- Swallowed inner exception in `ToDouble` conversion — failures now surface their real root cause.
+
+---
+
 ## [1.0.0] — Initial release
 
 ### Added

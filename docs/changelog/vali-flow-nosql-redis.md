@@ -15,6 +15,17 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) · Versioning: 
 
 ---
 
+## [1.2.0] — 2026-10-06
+
+### Added
+- `ValiFlowDiagnostics` Activity tracing wrapped around `Translate(...)`.
+
+### Fixed
+- **Security — RediSearch query injection**: query-syntax special characters (e.g. `)`/`|`) in `LIKE`-translated patterns weren't escaped before wrapping in wildcards, allowing query-structure injection. Now escaped first.
+- `customConverter` wasn't applied in `VisitComparison`/numeric `VisitIn`, silently ignoring custom type mappings for comparison and `IN` conditions.
+
+---
+
 ## [1.0.0] — Initial release
 
 ### Added

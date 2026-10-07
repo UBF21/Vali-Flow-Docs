@@ -15,6 +15,21 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) · Versioning: 
 
 ---
 
+## [1.4.0] — 2026-10-06
+
+### Added
+- `GenericRepository<T, TKey>` — a thin repository wrapping `ValiFlowEvaluator<T>` with `GetById`/`GetAll`/`GetPaged`/`Add`/`Update`/`Delete`/`SaveChanges`.
+- Query-construction logic extracted from `ValiFlowEvaluator` into a dedicated `QuerySpecificationBuilder` (no public API change).
+- Read/write evaluator methods wrapped with `ValiFlowDiagnostics` Activity tracing.
+
+### Fixed
+- `UpsertRangeAsync` dropped entries on duplicate keys (list accumulator instead of dictionary) — fixed to a dictionary accumulator.
+- `UpsertRangeAsync.PartitionUpsertRange` could discard a tracked entity's primary key — now preserved.
+- `BulkInsertOrUpdateAsync` could race under concurrent calls for the same entity type + key columns — calls are now serialized per that combination.
+- Bulk upsert contention under concurrency: replaced the ad-hoc retry with a generic transient-retry policy (`BulkUpsertRetryPolicy`) covering SQL Server, PostgreSQL, MySQL, and SQLite, gated per table.
+
+---
+
 ## [1.3.4] — 2026-04-15
 
 ### Fixed

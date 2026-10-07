@@ -10,7 +10,7 @@ import coreBuilder from '@site/static/diagrams/core-builder.drawio';
 Key properties:
 
 - Zero NuGet dependencies.
-- Targets `net8.0` and `net9.0`.
+- Targets `net8.0` and `net9.0` — also runs unmodified on **.NET 10** via forward compatibility.
 - Produces standard `Expression<Func<T, bool>>` trees consumable by LINQ, Entity Framework Core, and any other LINQ provider.
 - Supports in-memory validation with detailed error reporting.
 

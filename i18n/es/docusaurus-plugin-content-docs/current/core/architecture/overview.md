@@ -80,7 +80,7 @@ La librería resuelve tres problemas concretos:
 
 | Característica | Valor |
 |---|---|
-| Frameworks soportados | `net8.0`, `net9.0` |
+| Frameworks soportados | `net8.0`, `net9.0` (tambien corre sin modificaciones en .NET 10 por compatibilidad hacia adelante) |
 | Dependencias externas NuGet | Ninguna |
 | Thread safety | Mutable durante construcción, thread-safe después de freeze |
 | Traducibilidad EF Core | Parcial — ver `ValiFlowQuery<T>` |

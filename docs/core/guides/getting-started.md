@@ -4,7 +4,7 @@
 
 ### Prerequisites
 
-- .NET 8.0 or .NET 9.0
+- .NET 8.0 or .NET 9.0 (also runs on .NET 10 via forward compatibility)
 - No additional dependencies required
 
 ### NuGet

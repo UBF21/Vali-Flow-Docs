@@ -80,7 +80,7 @@ The library solves three concrete problems:
 
 | Feature | Value |
 |---|---|
-| Supported frameworks | `net8.0`, `net9.0` |
+| Supported frameworks | `net8.0`, `net9.0` (also runs unmodified on .NET 10 via forward compatibility) |
 | External NuGet dependencies | None |
 | Thread safety | Mutable during construction, thread-safe after freeze |
 | EF Core translatability | Partial — see `ValiFlowQuery<T>` |

@@ -15,6 +15,13 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) · Versioning: 
 
 ---
 
+## [1.1.1] — 2026-10-06
+
+### Fixed
+- Closure-captured `null` values in a `ValiFlow<T>` condition now translate to the same `NullNode` as a literal `null` (were previously inconsistent).
+
+---
+
 ## [1.0.0] — Initial release
 
 ### Added

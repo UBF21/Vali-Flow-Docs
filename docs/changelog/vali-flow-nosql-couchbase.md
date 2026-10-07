@@ -15,6 +15,13 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) · Versioning: 
 
 ---
 
+## [1.1.0] — 2026-10-06
+
+### Fixed
+- `decimal` values were bound as N1QL string literals instead of native numbers.
+
+---
+
 ## [1.0.0] — Initial release
 
 ### Added

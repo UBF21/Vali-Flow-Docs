@@ -15,6 +15,13 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) · Versioning: 
 
 ---
 
+## [1.2.0] — 2026-10-06
+
+### Added
+- `ValiFlowDiagnostics` Activity tracing added to the translator.
+
+---
+
 ## [1.0.0] — Initial release
 
 ### Added

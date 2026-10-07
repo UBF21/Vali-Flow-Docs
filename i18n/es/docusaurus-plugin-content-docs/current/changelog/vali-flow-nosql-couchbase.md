@@ -15,6 +15,13 @@ Formato: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) · Versionado:
 
 ---
 
+## [1.1.0] — 2026-10-06
+
+### Corregido
+- Los valores `decimal` se vinculaban como literales string de N1QL en vez de numeros nativos.
+
+---
+
 ## [1.0.0] — Lanzamiento inicial
 
 ### Agregado

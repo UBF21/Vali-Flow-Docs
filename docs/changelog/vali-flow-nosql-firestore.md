@@ -15,6 +15,12 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) · Versioning: 
 
 ---
 
+## [1.1.0] — 2026-10-06
+
+Version bump as part of the October 2026 NoSQL adapters release wave; no functional changes beyond the initial release.
+
+---
+
 ## [1.0.0] — Initial release
 
 ### Added
